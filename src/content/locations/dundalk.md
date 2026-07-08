@@ -49,4 +49,12 @@ Ryak provides industrial, kitchen and contract cleaning across Dundalk's manufac
 
 Dundalk's M1 link to Dublin makes it one of our fastest mobilisation destinations — teams reach corridor and town centre sites within an hour. You receive the responsiveness of a local contractor with specialist industrial, food production and kitchen extract capability that regional generalists rarely match. A named account manager based in Dublin coordinates all Louth services with regular site visits and audit reporting.
 
+## Northern Ireland and cross-border coverage
+
+Dundalk sits immediately south of the border, and the M1 links the town to Newry in under fifteen minutes. Many Louth businesses manage production, food processing or logistics facilities on both sides, and Ryak coordinates cross-border cleaning programmes from our Dublin headquarters to ensure consistent standards and audit documentation across both jurisdictions.
+
+Northern Ireland coverage is delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with dedicated teams in [Newry](/locations/newry/) and [Belfast](/locations/belfast/) serving the six counties. Dundalk businesses with cross-border portfolios receive one specification, one contractor and one audit format regardless of which side of the border a site sits.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [commercial kitchen cleaning](/services/commercial-kitchen-cleaning/) for cross-border portfolios are coordinated to maintain consistent hygiene standards north and south.
+
 Whether you operate a production facility on the M1 corridor, manage restaurant kitchens in the town centre or need contract cleaning across a mixed commercial portfolio, Ryak delivers audited standards and directly employed teams. Call 01 531 4044 for a free site assessment and quotation.

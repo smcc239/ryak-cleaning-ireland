@@ -50,4 +50,12 @@ Logistics and distribution clients benefit from our [road sweeping](/services/ro
 
 Limerick's industrial and logistics clients need a contractor with genuine specialist depth — not a regional generalist who subcontracts industrial work. Ryak's Dublin headquarters coordinates Mid West mobilisation with directly employed teams trained for manufacturing, transport and healthcare environments. You receive nationwide specialist capability with a named account manager and consistent audit reporting.
 
+## Northern Ireland and cross-border coverage
+
+Limerick's manufacturing and logistics businesses increasingly operate across the island, and Ryak's Dublin headquarters provides the coordination point for all-island commercial cleaning programmes. Organisations managing production or distribution facilities in Limerick and Northern Ireland benefit from one specification, one contractor and consistent documentation across both jurisdictions.
+
+Northern Ireland coverage is operated by our sister business at [ryakcleaning.com](https://ryakcleaning.com), with teams active in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) and throughout the six counties. Mid West clients with northern interests receive aligned industrial hygiene standards and a single point of contact regardless of which side of the border their facilities sit.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [contract cleaning](/services/contract-cleaning/) for all-island manufacturing portfolios are coordinated through our Dublin operation.
+
 Whether you operate a production facility in Raheen, manage a distribution centre on the N18 corridor or oversee contract cleaning for a city-centre office portfolio, Ryak provides one accountable relationship. Call 01 531 4044 for a free site assessment and quotation.

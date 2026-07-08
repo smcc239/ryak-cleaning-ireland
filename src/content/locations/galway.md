@@ -50,4 +50,12 @@ Presentation matters in a tourism city, and our [window cleaning](/services/wind
 
 Galway clients benefit from Ryak's nationwide specialist capability without compromising on local responsiveness. Our Dublin headquarters coordinates Connacht mobilisation with teams trained for medtech, education and hospitality environments — sectors where a general regional cleaner often lacks the depth required. You receive one accountable contractor covering contract cleaning, industrial work and specialist services under a single specification.
 
+## Northern Ireland and cross-border coverage
+
+Galway's medtech and university sectors are part of an island-wide healthcare and technology ecosystem where cleaning programmes often span multiple jurisdictions. Ryak serves Galway from our Dublin headquarters, which coordinates nationwide RoI coverage and provides the connection point for all-island accounts with facilities in both the Republic and Northern Ireland.
+
+Northern Ireland services are delivered by our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with specialist teams serving [Belfast](/locations/belfast/) and [Derry](/locations/derry/) across the six counties. Medtech and education clients with sites in Galway and Northern Ireland receive aligned specifications under one contractor.
+
+[Contract cleaning](/services/contract-cleaning/) and [industrial cleaning](/services/industrial-cleaning/) programmes for cross-border medtech portfolios are coordinated from Dublin with consistent standards north and south.
+
 Whether you manage a medtech facility in Parkmore, a hotel on the Promenade or a portfolio of commercial units across the city, Ryak provides audited standards, directly employed teams and documentation your compliance programme can rely on. Call 01 531 4044 for a free site assessment and quotation.

@@ -49,4 +49,12 @@ Presentation directly affects tourism revenue, and our [window cleaning](/servic
 
 Kerry's hospitality and food production clients need specialist kitchen extract capability and HACCP-aware cleaning — services that regional generalists often subcontract or lack entirely. Ryak's Dublin headquarters coordinates Munster mobilisation with directly employed teams trained for TR19 compliance and food production hygiene. You receive nationwide specialist depth with planned scheduling that respects Kerry's seasonal rhythms.
 
+## Northern Ireland and cross-border coverage
+
+Kerry's tourism and food production businesses increasingly serve an all-island market, and Ryak's Dublin headquarters coordinates cross-border programmes for organisations with facilities in both the Republic and Northern Ireland. Hospitality groups and food producers operating across both jurisdictions benefit from one cleaning contractor, consistent hygiene standards and a single audit trail.
+
+Northern Ireland services are delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with specialist teams in [Belfast](/locations/belfast/) and [Derry](/locations/derry/) covering the six counties. Kerry clients with northern hotel properties or food distribution sites receive aligned TR19 and HACCP standards under one accountable contractor.
+
+[Commercial kitchen cleaning](/services/commercial-kitchen-cleaning/) and [contract cleaning](/services/contract-cleaning/) for all-island hospitality and food portfolios are coordinated from our Dublin base.
+
 Whether you manage a hotel group in Killarney, operate a food production facility in Tralee or need contract cleaning across a tourism portfolio, Ryak delivers documented compliance and presentation standards that sustain your reputation. Call 01 531 4044 for a free site assessment and quotation.

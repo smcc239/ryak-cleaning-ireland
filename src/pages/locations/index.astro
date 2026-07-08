@@ -1,27 +1,32 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Button from '../../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
 import { getLocationImage, MEDIA } from '../../utils/media';
 import { SITE } from '../../consts';
 
-const locations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
+const allLocations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
+const republicLocations = allLocations.filter((l) => l.data.area !== 'northern-ireland');
+const niLocations = allLocations.filter((l) => l.data.area === 'northern-ireland');
+
 const breadcrumbs = buildBreadcrumbs([{ label: 'Locations' }]);
 const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
 ---
 
 <BaseLayout
   title="Commercial Cleaning Locations Ireland | Ryak Cleaning"
-  description="Commercial cleaning in Dublin, Cork, Galway, Limerick and across Ireland. Nationwide coverage from our Dublin base. Call 01 531 4044."
+  description="Commercial cleaning across the Republic of Ireland and Northern Ireland. Dublin, Cork, Belfast, Derry and nationwide. Call 01 531 4044 or visit ryakcleaning.com for NI."
   breadcrumbs={breadcrumbs}
   breadcrumbInHero
   schema={schema}
 >
   <PageHero
     eyebrow="Locations"
-    title="Dublin based, covering all of Ireland"
-    description="Mobile specialist teams reaching every county in the Republic of Ireland."
+    title="Republic of Ireland and Northern Ireland"
+    description="Ryak Cleaning Ireland covers every county in the Republic from Dublin. Northern Ireland is served by our Belfast office at ryakcleaning.com — one group, island-wide standards."
     imageSrc={MEDIA.hero.locations}
     imageAlt="Commercial cleaning locations across Ireland"
     breadcrumbs={breadcrumbs}
@@ -29,31 +34,78 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
   />
 
   <section class="py-16">
-    <div class="wrap grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {
-        locations.map((loc) => (
-          <a
-            href={`/locations/${loc.slug}/`}
-            class="group bg-white border border-line rounded-card overflow-hidden hover:border-red hover:-translate-y-1 transition-all"
-          >
-            <div class="aspect-video relative overflow-hidden bg-stone">
-              <img
-                src={getLocationImage(loc.slug)}
-                alt={`Commercial cleaning in ${loc.data.city}`}
-                width={600}
-                height={340}
-                loading="lazy"
-                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div class="p-5">
-              <h2 class="text-xl font-bold mb-2">Commercial Cleaning {loc.data.city}</h2>
-              <p class="text-sm text-grey mb-3">{loc.data.description}</p>
-              <span class="text-red font-display font-bold text-sm">{loc.data.region} →</span>
-            </div>
-          </a>
-        ))
-      }
+    <div class="wrap max-w-3xl prose-content mb-12">
+      <p>
+        Choose your area below for locally relevant commercial cleaning information, service links and FAQs. Republic of Ireland clients work directly with our Dublin head office on <strong>{SITE.phoneDisplay}</strong>. Northern Ireland sites are managed through <a href={SITE.belfastUrl} target="_blank" rel="noopener noreferrer">ryakcleaning.com</a> with the same ISO accreditations and directly employed teams.
+      </p>
+    </div>
+
+    <div class="wrap mb-14">
+      <SectionHead eyebrow="Republic of Ireland" title="Commercial cleaning across the South" lead="Mobile specialist teams from our Dublin base covering all 26 counties." />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          republicLocations.map((loc) => (
+            <a
+              href={`/locations/${loc.slug}/`}
+              class="group bg-white border border-line rounded-card overflow-hidden hover:border-red hover:-translate-y-1 transition-all"
+            >
+              <div class="aspect-video relative overflow-hidden bg-stone">
+                <img
+                  src={getLocationImage(loc.slug)}
+                  alt={`Commercial cleaning in ${loc.data.city}`}
+                  width={600}
+                  height={340}
+                  loading="lazy"
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-5">
+                <h2 class="text-xl font-bold mb-2">Commercial Cleaning {loc.data.city}</h2>
+                <p class="text-sm text-grey mb-3">{loc.data.description}</p>
+                <span class="text-red font-display font-bold text-sm">{loc.data.region} →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Northern Ireland"
+        title="Commercial cleaning across the North"
+        lead="Belfast-based teams via ryakcleaning.com — select an area for local information and a direct link to our NI website."
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          niLocations.map((loc) => (
+            <a
+              href={`/locations/${loc.slug}/`}
+              class="group bg-ink text-white border border-[#2C2E37] rounded-card overflow-hidden hover:border-red hover:-translate-y-1 transition-all"
+            >
+              <div class="aspect-video relative overflow-hidden bg-[#2C2E37]">
+                <img
+                  src={getLocationImage(loc.slug)}
+                  alt={`Commercial cleaning in ${loc.data.city}, Northern Ireland`}
+                  width={600}
+                  height={340}
+                  loading="lazy"
+                  class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-5">
+                <h2 class="text-xl font-bold mb-2">{loc.data.city} · Northern Ireland</h2>
+                <p class="text-sm text-[#AEB2BD] mb-3">{loc.data.description}</p>
+                <span class="text-red font-display font-bold text-sm">ryakcleaning.com →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href={SITE.belfastUrl} external>Visit ryakcleaning.com</Button>
+        <Button href="/contact-us/" variant="dark">Republic of Ireland enquiries</Button>
+      </div>
     </div>
   </section>
 </BaseLayout>

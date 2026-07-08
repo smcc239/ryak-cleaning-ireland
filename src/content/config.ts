@@ -70,6 +70,8 @@ const locations = defineCollection({
     services: z.array(z.string()),
     sectors: z.array(z.string()),
     region: z.string(),
+    area: z.enum(['republic', 'northern-ireland']).default('republic'),
+    ukSitePath: z.string().optional(),
     faqs: z.array(faqSchema).min(3),
     proofPoint: z.string().optional(),
     order: z.number(),

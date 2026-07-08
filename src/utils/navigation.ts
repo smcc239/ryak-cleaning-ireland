@@ -24,7 +24,7 @@ export const aboutLinks: NavLink[] = [
 
 export const resourceLinks: NavLink[] = [
   { label: 'Guides & Insights', href: '/news/', description: 'TR19, data centre cleaning & more' },
-  { label: 'Service Areas', href: '/locations/', description: 'Commercial cleaning across Ireland' },
+  { label: 'Service Areas', href: '/locations/', description: 'Republic of Ireland & Northern Ireland' },
 ];
 
 export function buildServiceMega(services: NavLink[]): NavMegaColumn[] {

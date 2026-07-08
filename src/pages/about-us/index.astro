@@ -2,11 +2,39 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import MediaImage from '../../components/MediaImage.astro';
+import SectionHead from '../../components/SectionHead.astro';
 import AccreditationStrip from '../../components/AccreditationStrip.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import Button from '../../components/Button.astro';
+import AuthorCredit from '../../components/AuthorCredit.astro';
 import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { SITE } from '../../consts';
 import { MEDIA } from '../../utils/media';
 
 const breadcrumbs = buildBreadcrumbs([{ label: 'About Us' }]);
+
+const faqs = [
+  {
+    question: 'Where is Ryak Cleaning Ireland based?',
+    answer:
+      'Our Irish head office is at Harcourt Centre, Block 4, Harcourt Road, Dublin 2. From here we manage contract and specialist cleaning programmes across the Republic of Ireland, with mobile teams covering every county.',
+  },
+  {
+    question: 'Do you cover Northern Ireland?',
+    answer:
+      'Northern Ireland is served by our Belfast office through ryakcleaning.com. If your sites span the border — for example in Dublin and Belfast, or Donegal and Derry — we coordinate as one group so you retain consistent standards and a single relationship.',
+  },
+  {
+    question: 'Are your cleaning teams directly employed?',
+    answer:
+      'Yes. Ryak directly employs and trains operatives rather than relying on unseen subcontractors. That gives facilities managers clearer accountability, safer site inductions and consistent audit documentation on every visit.',
+  },
+  {
+    question: 'What industries do you specialise in?',
+    answer:
+      'We support data centres, food production, healthcare, education, offices, industrial plants, manufacturing, construction handover and marine facilities. Specialist services include TR19 kitchen extract cleaning, ducting, high-level window access and emergency response.',
+  },
+];
 ---
 
 <BaseLayout
@@ -18,7 +46,7 @@ const breadcrumbs = buildBreadcrumbs([{ label: 'About Us' }]);
   <PageHero
     eyebrow="About Us"
     title="A family-run cleaning company serving Ireland"
-    description="Ryak Cleaning Ireland is the Republic of Ireland operation of Ryak Cleaning and Support Services, delivering commercial, industrial and specialist cleaning nationwide from our Dublin base."
+    description="Ryak Cleaning Ireland is the Republic of Ireland operation of Ryak Cleaning and Support Services — commercial, industrial and specialist cleaning nationwide from Dublin since 2003."
     imageSrc={MEDIA.hero.about}
     imageAlt="Ryak Cleaning team at work in Ireland"
     breadcrumbs={breadcrumbs}
@@ -26,26 +54,81 @@ const breadcrumbs = buildBreadcrumbs([{ label: 'About Us' }]);
   />
 
   <section class="py-16">
-    <div class="wrap max-w-4xl grid md:grid-cols-2 gap-10 items-start">
+    <div class="wrap max-w-4xl">
       <div class="prose-content">
+        <h2>Our story</h2>
         <p>
-          For over 20 years, Ryak has supported Irish businesses with cleaning services they can audit, reference and rely on. Our operatives are directly employed, trained and vetted — not subcontracted out of sight.
+          Ryak Cleaning and Support Services was established in 2003 as a family-run commercial cleaning company built on reliability, audit-ready standards and direct employment. What began as a focused Dublin operation has grown into a nationwide contractor trusted by facilities managers, landlords and operations teams who cannot afford inconsistency on critical sites.
         </p>
         <p>
-          From daily contract cleaning in Dublin offices to specialist data centre protocols and TR19 kitchen extract cleaning nationwide, we hold one quality standard across every service and every county.
+          Ryak Cleaning Ireland delivers the group’s specialist capability across the Republic — from daily <a href="/services/contract-cleaning/">contract cleaning</a> in Grade A offices to TR19-compliant <a href="/services/commercial-kitchen-cleaning/">commercial kitchen cleaning</a>, <a href="/services/industrial-cleaning/">industrial deep cleans</a> and ISO 14644 aware <a href="/sectors/data-centres/">data centre cleaning</a>. Every programme is backed by documented method statements, RAMS and photographic evidence where required.
+        </p>
+
+        <h2>How we work</h2>
+        <p>
+          We believe commercial cleaning should be measurable, not assumed. That means directly employed teams who complete site inductions, supervisors who audit quality against agreed specifications, and account managers who remain accessible when schedules change or emergencies arise. We do not subcontract work out of sight — you know who is on your site and what standard they are working to.
         </p>
         <p>
-          Our Irish operation runs from Dublin. Northern Ireland clients are supported by our Belfast office at <a href="https://www.ryakcleaning.com" class="text-red hover:underline">ryakcleaning.com</a>.
+          Our approach suits organisations managing single premises and multi-site portfolios alike. Whether you oversee a financial services headquarters in Dublin, a food production facility in Cork or a university campus in Galway, you receive one accountable contractor with integrated specialist services under one specification.
         </p>
+
+        <h2>Republic of Ireland and Northern Ireland</h2>
+        <p>
+          Ryak operates across the island of Ireland through two dedicated websites. <strong>Ryak Cleaning Ireland</strong> (this site) covers the Republic of Ireland from our Dublin head office — call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>. <strong>Northern Ireland</strong> is managed by our Belfast team at <a href={SITE.belfastUrl} target="_blank" rel="noopener noreferrer">ryakcleaning.com</a>, with local account management and the same accredited standards.
+        </p>
+        <p>
+          Border counties such as Donegal, Louth and Cavan often sit close to Northern Ireland operations. We help clients with cross-border portfolios route enquiries correctly while maintaining consistent documentation and service levels. Explore our <a href="/locations/">service areas</a> or read more about our <a href="/accreditations/">accreditations</a>.
+        </p>
+
+        <h2>What we deliver</h2>
+        <ul>
+          <li><a href="/services/contract-cleaning/">Contract and office cleaning</a> — daily and periodic programmes for commercial buildings</li>
+          <li><a href="/services/commercial-kitchen-cleaning/">Commercial kitchen and TR19 extract cleaning</a> — restaurants, hotels, catering and food service</li>
+          <li><a href="/services/window-cleaning/">Window cleaning</a> — reach-and-wash, abseil and cradle access</li>
+          <li><a href="/services/ducting-ventilation-cleaning/">Ducting and ventilation cleaning</a> — compliance-focused extract hygiene</li>
+          <li><a href="/services/industrial-cleaning/">Industrial and deep cleaning</a> — plants, warehouses and production environments</li>
+          <li><a href="/services/emergency-cleaning/">Emergency cleaning</a> — 24/7 response when incidents demand rapid mobilisation</li>
+        </ul>
+
+        <h2>Industries we support</h2>
+        <p>
+          Sector expertise matters as much as cleaning technique. Our teams understand the access, hygiene and documentation requirements of <a href="/sectors/data-centres/">data centres</a>, <a href="/sectors/food-production/">food production</a>, <a href="/sectors/healthcare/">healthcare</a>, <a href="/sectors/education/">education</a>, <a href="/sectors/manufacturing/">manufacturing</a>, <a href="/sectors/industrial/">industrial</a> and <a href="/sectors/offices-professional-services/">offices and professional services</a>. Explore all <a href="/sectors/">sectors we serve</a>.
+        </p>
+
+        <AuthorCredit />
       </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap">
+      <SectionHead eyebrow="Standards" title="Accredited, auditable and accountable" lead="ISO 9001 and ISO 14001 certified processes with SafeContractor and Constructionline Gold registration." />
+      <AccreditationStrip />
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href="/accreditations/">View all accreditations</Button>
+        <Button href="/contact-us/" variant="dark">Request a free quote</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="wrap max-w-4xl grid md:grid-cols-2 gap-10 items-start">
       <MediaImage
         src={MEDIA.feature.office}
         alt="Commercial office cleaning by Ryak in Dublin"
         caption="Directly employed teams delivering audited standards across Ireland."
       />
-    </div>
-    <div class="wrap">
-      <AccreditationStrip />
+      <div class="prose-content">
+        <h2>Why facilities managers choose Ryak</h2>
+        <p>
+          Cleaning is often treated as a commodity until an audit fails, a tenant complains or an extract system poses a fire risk. Ryak is structured for clients who need provable standards — photographic reporting, TR19 certification, anti-static data centre protocols and RAMS that stand up to review.
+        </p>
+        <p>
+          With over 20 years serving Irish businesses, we combine the responsiveness of a Dublin-based contractor with specialist capability that smaller operators cannot match. Call {SITE.phoneDisplay} for a no-obligation site assessment, or browse our <a href="/news/">resources and guides</a> for practical advice on kitchen extract, data centre and contract cleaning standards.
+        </p>
+      </div>
     </div>
   </section>
+
+  <FAQSection faqs={faqs} />
 </BaseLayout>

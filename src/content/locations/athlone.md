@@ -49,4 +49,12 @@ Production and logistics environments benefit from dedicated [floor cleaning](/s
 
 Athlone's pharmaceutical and logistics clients need specialist industrial and floor cleaning capability that midlands generalists often lack. Ryak's Dublin headquarters coordinates midlands mobilisation with directly employed teams trained for manufacturing, healthcare-adjacent and logistics environments. You receive nationwide specialist depth with a named account manager and audit-ready documentation.
 
+## Northern Ireland and cross-border coverage
+
+Athlone's central location on the island makes it a natural hub for businesses with facilities spread across the Republic and Northern Ireland. Ryak serves Athlone and the midlands from our Dublin headquarters, which also coordinates all-island cleaning programmes for pharmaceutical and logistics clients maintaining facilities in both jurisdictions. Consistent validated methods and audit documentation across both territories simplify compliance for cross-border operations.
+
+Northern Ireland coverage is operated through our sister business at [ryakcleaning.com](https://ryakcleaning.com), with teams in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) serving the six counties. Athlone clients with northern production or distribution sites receive aligned specifications and coordinated mobilisation under one accountable contractor.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [contract cleaning](/services/contract-cleaning/) for all-island pharma and logistics portfolios are coordinated from our Dublin headquarters.
+
 Whether you operate a pharma facility in the Business and Technology Park, manage a distribution centre on the Shannon corridor or need contract cleaning for town centre retail, Ryak provides one accountable contractor with audited standards. Call 01 531 4044 for a free site assessment and quotation.

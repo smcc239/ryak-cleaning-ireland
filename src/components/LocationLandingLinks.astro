@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  city: string;
+}
+
+const { city } = Astro.props;
+
+const allServices = (await getCollection('services'))
+  .filter((s) => !s.data.parent)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const allSectors = (await getCollection('sectors')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="py-16 bg-stone">
+  <div class="wrap">
+    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-extrabold mb-3">All commercial cleaning services in {city}</h2>
+    <p class="text-grey max-w-2xl mb-8">
+      Browse every Ryak service available across the Republic of Ireland. Specialist teams mobilise from Dublin to {city} and nationwide.
+    </p>
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 list-none">
+      {
+        allServices.map((service) => (
+          <li>
+            <a
+              href={`/services/${service.slug}/`}
+              class="block bg-white border border-line rounded-md px-4 py-3 text-sm font-semibold hover:border-red hover:text-red transition-colors"
+            >
+              {service.data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-6">
+      <a href="/services/" class="text-red font-display font-bold text-sm hover:underline">View all services →</a>
+    </p>
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="wrap">
+    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-extrabold mb-3">Industries we clean in {city}</h2>
+    <p class="text-grey max-w-2xl mb-8">
+      Sector-specific cleaning programmes with compliance documentation for facilities managers and operations teams.
+    </p>
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 list-none">
+      {
+        allSectors.map((sector) => (
+          <li>
+            <a
+              href={`/sectors/${sector.slug}/`}
+              class="block bg-white border border-line rounded-md px-4 py-3 text-sm font-semibold hover:border-red hover:text-red transition-colors"
+            >
+              {sector.data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-6">
+      <a href="/sectors/" class="text-red font-display font-bold text-sm hover:underline">View all sectors →</a>
+    </p>
+  </div>
+</section>

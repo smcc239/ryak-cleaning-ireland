@@ -51,4 +51,12 @@ Presentation matters for Kildare's corporate office stock and retail parks. Our 
 
 Kildare's proximity to our Dublin headquarters is a genuine operational advantage. Teams reach Naas, Newbridge and M7 corridor sites within an hour, emergency requirements get same-day attention, and your account manager visits sites without the delays that affect contractors based further afield. You receive local responsiveness with nationwide specialist capability.
 
+## Northern Ireland and cross-border coverage
+
+Kildare's position on the M7 corridor places it within Ryak's fastest mobilisation zone from Dublin, and the same Dublin headquarters coordinates all-island programmes for clients with facilities in both the Republic and Northern Ireland. Logistics and pharmaceutical operators with north and south assets benefit from one contractor, one specification and consistent audit documentation across both jurisdictions.
+
+Northern Ireland coverage is operated by our sister business at [ryakcleaning.com](https://ryakcleaning.com), with specialist teams serving [Belfast](/locations/belfast/) and [Newry](/locations/newry/) across the six counties. Kildare clients expanding into Northern Ireland or managing cross-border portfolios receive coordinated mobilisation and aligned standards from the outset.
+
+[Contract cleaning](/services/contract-cleaning/) and [industrial cleaning](/services/industrial-cleaning/) for cross-border logistics and pharma portfolios are coordinated through our Dublin base.
+
 Whether you manage an office campus in Celbridge, operate a distribution centre on the M7 or need contract cleaning across a mixed portfolio, Ryak provides one specification, directly employed teams and audited standards. Call 01 531 4044 for a free site assessment and quotation.

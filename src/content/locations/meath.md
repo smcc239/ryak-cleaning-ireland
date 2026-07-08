@@ -49,4 +49,12 @@ Logistics and distribution clients benefit from our [road sweeping](/services/ro
 
 Meath's motorway links to Dublin mean our teams reach Navan, Ashbourne and M1 corridor sites quickly — typically within an hour. You receive rapid mobilisation and a named account manager based in the same region, combined with specialist industrial and food production capability that local generalists rarely offer. One contractor covers production facilities, logistics yards and commercial offices under a single accountable relationship.
 
+## Northern Ireland and cross-border coverage
+
+Meath's position on the M1 corridor places it directly on the main Dublin–Belfast route, and Ryak's Dublin headquarters coordinates all-island programmes for manufacturers and logistics operators with facilities in Meath and further north. Cross-border supply chains and production networks benefit from one contractor maintaining consistent hygiene standards across both jurisdictions.
+
+Northern Ireland coverage is operated through our sister business at [ryakcleaning.com](https://ryakcleaning.com), with teams serving [Belfast](/locations/belfast/) and [Newry](/locations/newry/) and throughout the six counties. Meath clients with M1 corridor operations extending into Northern Ireland receive aligned specifications, coordinated scheduling and single-format audit reporting.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [contract cleaning](/services/contract-cleaning/) for cross-border food production and logistics portfolios are coordinated from our Dublin base.
+
 Whether you operate a food production plant in Navan, manage a distribution centre on the M1 or need contract cleaning across a mixed commercial portfolio, Ryak delivers audited standards and directly employed teams. Call 01 531 4044 for a free site assessment and quotation.

@@ -51,4 +51,12 @@ Ryak provides a comprehensive cleaning capability for Cork's commercial and indu
 
 Our Dublin headquarters coordinates nationwide mobilisation, meaning Cork clients receive specialist capability without relying on a local generalist. Teams travelling to Munster carry the same training, equipment and accreditation as our capital-based operatives. You benefit from a contractor with genuine specialist depth — pharma-grade industrial cleaning, TR19 kitchen extract work and multi-site contract management — rather than a regional provider with limited scope.
 
+## Northern Ireland and cross-border coverage
+
+Ryak serves Cork and Munster from our Dublin headquarters, which also coordinates all-island cleaning programmes for organisations with facilities across both jurisdictions. Multinational companies operating pharmaceutical or manufacturing sites in Cork and Northern Ireland benefit from one contractor, aligned hygiene specifications and audit documentation that crosses the border without friction.
+
+Northern Ireland coverage is delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with teams in [Belfast](/locations/belfast/) and [Derry](/locations/derry/) serving the six counties. Cork clients expanding into Northern Ireland or managing cross-border portfolios deal with one accountable relationship from the outset.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [contract cleaning](/services/contract-cleaning/) programmes for all-island manufacturing and production portfolios are coordinated through our Dublin operation.
+
 Cork clients get a named account manager, photographic audit reporting and response times measured in days, not weeks. Whether you operate a single food production facility or manage cleaning across a pharma campus and city-centre offices, Ryak provides one specification and one point of accountability. Call 01 531 4044 for a free site assessment and quotation.

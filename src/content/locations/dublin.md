@@ -55,4 +55,12 @@ Specialist services integrate seamlessly into your contract. [Commercial kitchen
 
 Being headquartered in Dublin is a practical advantage for our capital clients. Your account manager sits in the same city, site visits happen without lengthy travel delays, and specialist teams mobilise from a local base rather than a distant depot. You get the responsiveness of a local contractor with the specialist capability of a nationwide operation.
 
+## Northern Ireland and cross-border coverage
+
+Ryak's Irish headquarters in Dublin makes the capital the natural hub for all-island cleaning programmes. Organisations managing commercial property across both jurisdictions — from IFSC offices to industrial sites north of the border — can consolidate under one contractor with consistent audit standards and a single point of accountability.
+
+Northern Ireland coverage sits with our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with specialist teams active in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) and throughout the six counties. Portfolio clients with sites in Dublin and Belfast receive aligned specifications, coordinated scheduling and one reporting format across both territories.
+
+[Office cleaning](/services/office-cleaning/) and [contract cleaning](/services/contract-cleaning/) programmes for cross-border property portfolios are coordinated from Dublin with direct liaison with our Northern Ireland teams.
+
 Every Dublin client receives a named account manager, photographic audit reporting and directly employed teams who understand your building, your schedule and your standards. From a single office in Dublin 2 to a portfolio spanning the commuter belt, Ryak delivers one specification, one invoice and one point of accountability. Call 01 531 4044 for a free site assessment and quotation.

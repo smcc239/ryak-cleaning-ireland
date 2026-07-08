@@ -2,23 +2,94 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import MediaImage from '../../components/MediaImage.astro';
+import SectionHead from '../../components/SectionHead.astro';
 import AccreditationStrip from '../../components/AccreditationStrip.astro';
-import { ACCREDITATIONS } from '../../consts';
+import FAQSection from '../../components/FAQSection.astro';
+import Button from '../../components/Button.astro';
+import AuthorCredit from '../../components/AuthorCredit.astro';
+import { ACCREDITATIONS, SITE } from '../../consts';
 import { buildBreadcrumbs } from '../../utils/breadcrumbs';
 import { MEDIA } from '../../utils/media';
+
 const breadcrumbs = buildBreadcrumbs([{ label: 'Accreditations' }]);
+
+const accreditationDetails = [
+  {
+    name: 'ISO 9001:2015',
+    summary: 'Quality management systems',
+    body: 'ISO 9001 certification demonstrates that Ryak operates documented quality management processes — from client onboarding and method statements to internal audits and corrective actions. Facilities managers receive consistent service delivery with traceable standards across every site and every team.',
+  },
+  {
+    name: 'ISO 14001:2015',
+    summary: 'Environmental management',
+    body: 'ISO 14001 confirms our commitment to responsible environmental practice. That includes waste segregation on client sites, controlled use of cleaning chemicals, and procedures that minimise environmental impact without compromising hygiene outcomes on food, healthcare or industrial contracts.',
+  },
+  {
+    name: 'Alcumus SafeContractor',
+    summary: 'Health and safety accreditation',
+    body: 'SafeContractor accreditation is widely required by corporate and public-sector procurement teams. It verifies that Ryak meets rigorous health and safety standards — essential for industrial sites, construction handover cleans, high-level access work and facilities with strict contractor vetting requirements.',
+  },
+  {
+    name: 'Constructionline Gold',
+    summary: 'Construction supply chain',
+    body: 'Constructionline Gold registration streamlines pre-qualification for construction and fit-out projects. Developers and principal contractors can appoint Ryak for builders cleans, sparkle cleans and post-handover cleaning knowing our credentials, insurance and RAMS meet industry expectations.',
+  },
+  {
+    name: 'BICSc',
+    summary: 'British Institute of Cleaning Science',
+    body: 'BICSc-trained supervisors and operatives follow industry-recognised cleaning methodology and colour-coding protocols. This is particularly important on healthcare, food production and multi-tenant office contracts where cross-contamination controls must be demonstrable during audits.',
+  },
+  {
+    name: 'IPAF',
+    summary: 'Powered access equipment',
+    body: 'IPAF certification supports safe use of mobile elevated work platforms for high-level cleaning, signage cleaning and industrial access. Combined with our abseil and cradle window cleaning capability, this allows Ryak to deliver elevated work under controlled, audited procedures.',
+  },
+  {
+    name: 'FWC',
+    summary: 'Facilities management competency',
+    body: 'Facilities management competency registration reinforces Ryak’s alignment with FM industry standards — scheduling, reporting, KPI tracking and client communication structured for facilities teams managing complex, multi-site portfolios across Ireland.',
+  },
+  {
+    name: 'FSB Member',
+    summary: 'Federation of Small Businesses',
+    body: 'As an FSB member, Ryak maintains the governance, insurance and business standards expected of a trusted commercial supplier — supporting long-term relationships with Irish SMEs, landlords and growing businesses that need reliable contract cleaning without enterprise-level bureaucracy.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Can you provide accreditation certificates for tender submissions?',
+    answer:
+      'Yes. We routinely supply ISO certificates, SafeContractor and Constructionline documentation, insurance schedules and sample RAMS for tender and vendor onboarding. Contact our Dublin office on 01 531 4044 and we will provide the documentation your procurement team requires.',
+  },
+  {
+    question: 'Do accreditations apply to specialist cleaning as well as contract cleaning?',
+    answer:
+      'Absolutely. The same quality and safety frameworks govern TR19 kitchen extract cleaning, data centre protocols, industrial deep cleans and emergency response. Specialist teams follow method statements specific to each environment while operating under the same audited management system.',
+  },
+  {
+    question: 'Are your Northern Ireland operations equally accredited?',
+    answer:
+      'Yes. Ryak Cleaning operates to group standards across the island. Northern Ireland contracts are managed through ryakcleaning.com with the same ISO, SafeContractor and Constructionline credentials. Cross-border clients receive consistent documentation whether sites are in Dublin, Belfast or both.',
+  },
+  {
+    question: 'What documentation do you leave after each clean?',
+    answer:
+      'Documentation depends on the service. Contract clients receive audit reports and KPI tracking. Kitchen extract work includes TR19 certification and photographic evidence. Data centre and industrial cleans include signed method statements and access logs. We tailor reporting to your audit requirements.',
+  },
+];
 ---
 
 <BaseLayout
   title="Accreditations | Ryak Cleaning Ireland"
-  description="ISO 9001, ISO 14001, SafeContractor, Constructionline Gold and BICSc trained teams. Ryak Cleaning Ireland accreditations."
+  description="ISO 9001, ISO 14001, SafeContractor, Constructionline Gold and BICSc trained teams. Ryak Cleaning Ireland accreditations for commercial and specialist cleaning."
   breadcrumbs={breadcrumbs}
   breadcrumbInHero
 >
   <PageHero
     eyebrow="Accreditations"
     title="Accredited and auditable at every level"
-    description="Our accreditations demonstrate the standards Irish facilities managers expect from a commercial cleaning contractor."
+    description="Our accreditations demonstrate the standards Irish facilities managers, landlords and procurement teams expect from a commercial cleaning contractor — on contract programmes and specialist work alike."
     imageSrc={MEDIA.hero.about}
     imageAlt="Ryak Cleaning accreditations and standards"
     breadcrumbs={breadcrumbs}
@@ -26,29 +97,73 @@ const breadcrumbs = buildBreadcrumbs([{ label: 'Accreditations' }]);
   />
 
   <section class="py-16">
+    <div class="wrap max-w-4xl prose-content mb-12">
+      <p>
+        Commercial cleaning is a regulated, scrutinised service. Whether you manage a Dublin office portfolio, a Cork manufacturing plant or a nationwide food production estate, you need a contractor whose credentials survive procurement review and whose teams work to documented standards on every visit. Ryak Cleaning Ireland holds ISO 9001 and ISO 14001 certification alongside SafeContractor, Constructionline Gold and BICSc-trained supervision.
+      </p>
+      <p>
+        Accreditations are not wall certificates — they shape how we write RAMS, train operatives, audit sites and respond when standards slip. Explore our <a href="/services/">cleaning services</a> and <a href="/sectors/">industry sectors</a>, or read about our <a href="/about-us/">company history</a> and island-wide coverage including <a href={SITE.belfastUrl} target="_blank" rel="noopener noreferrer">Northern Ireland through ryakcleaning.com</a>.
+      </p>
+    </div>
+
+    <div class="wrap grid md:grid-cols-2 gap-5">
+      {
+        accreditationDetails.map((item) => (
+          <article class="bg-white border border-line rounded-card p-6 hover:border-red/30 transition-colors">
+            <p class="text-xs font-bold uppercase tracking-[0.12em] text-red mb-2">{item.summary}</p>
+            <h2 class="text-xl font-bold mb-3">{item.name}</h2>
+            <p class="text-sm text-grey leading-relaxed">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap">
+      <SectionHead eyebrow="Registered standards" title="All accreditations at a glance" />
+      <AccreditationStrip />
+      <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none">
+        {
+          ACCREDITATIONS.map((item) => (
+            <li class="bg-white border border-line rounded-card px-4 py-3 font-display font-semibold text-sm text-center">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16">
     <div class="wrap max-w-4xl grid md:grid-cols-2 gap-10 items-start">
-      <div>
-        <div class="grid sm:grid-cols-2 gap-4 mb-8">
-          {
-            ACCREDITATIONS.map((item) => (
-              <div class="bg-white border border-line rounded-card p-6 font-display font-bold text-lg">
-                {item}
-              </div>
-            ))
-          }
-        </div>
-        <p class="text-grey leading-relaxed">
-          Every site receives documented method statements and RAMS. Regular internal audits ensure our teams deliver consistently, whether cleaning a Dublin office or an industrial plant in Cork.
+      <div class="prose-content">
+        <h2>Compliance on every site</h2>
+        <p>
+          Before work begins, clients receive method statements and risk assessments tailored to the environment — anti-static protocols for data centres, confined-space RAMS for industrial plants, TR19 procedures for commercial kitchens and standard contract cleaning specifications for offices and retail.
         </p>
+        <p>
+          Supervisors conduct internal quality audits against agreed KPIs. Where photographic evidence is required, we capture it. Where certification is required — such as TR19 kitchen extract cleaning — we issue formal documentation for insurance and environmental health review.
+        </p>
+        <p>
+          Need copies for a tender or vendor approval? Call <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a> or use our <a href="/contact-us/">contact form</a>. Northern Ireland enquiries should be directed to <a href={SITE.belfastUrl} target="_blank" rel="noopener noreferrer">ryakcleaning.com</a>.
+        </p>
+        <AuthorCredit />
       </div>
       <MediaImage
         src={MEDIA.feature.industrial}
         alt="Accredited industrial cleaning by Ryak"
-        caption="ISO accredited processes on every site."
+        caption="ISO accredited processes on contract and specialist sites."
       />
     </div>
-    <div class="wrap">
-      <AccreditationStrip />
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap flex flex-wrap gap-4 justify-center">
+      <Button href="/contact-us/">Request accreditation pack</Button>
+      <Button href="/about-us/" variant="dark">About Ryak Cleaning</Button>
     </div>
   </section>
+
+  <FAQSection faqs={faqs} />
 </BaseLayout>

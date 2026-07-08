@@ -1,0 +1,64 @@
+---
+import { SITE } from '../consts';
+
+interface Props {
+  area: 'republic' | 'northern-ireland';
+  city: string;
+  ukSitePath?: string;
+}
+
+const { area, city, ukSitePath = '/' } = Astro.props;
+const ukUrl = new URL(ukSitePath, SITE.ukSite.url).href;
+const ukContact = new URL(SITE.ukSite.contactPath, SITE.ukSite.url).href;
+---
+
+{
+  area === 'northern-ireland' ? (
+    <div class="not-prose my-10 rounded-card border-2 border-red bg-red/5 p-6 md:p-8">
+      <p class="eyebrow mb-3">Northern Ireland</p>
+      <h2 class="text-2xl font-extrabold mb-3">Commercial cleaning in {city} — Belfast office</h2>
+      <p class="text-grey leading-relaxed mb-5">
+        {city} is served by our Northern Ireland operation at <strong>{SITE.ukSite.name}</strong>. For quotes, account management and mobilisation in {city} and across NI, visit our Belfast website — same Ryak group standards, locally managed from Northern Ireland.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href={ukUrl} class="btn btn-red" target="_blank" rel="noopener noreferrer">
+          Visit ryakcleaning.com →
+        </a>
+        <a href={ukContact} class="btn btn-dark" target="_blank" rel="noopener noreferrer">
+          Contact Belfast office
+        </a>
+      </div>
+    </div>
+  ) : (
+    <div class="not-prose my-10 rounded-card border border-line bg-stone p-6 md:p-8">
+      <p class="eyebrow mb-3">Island-wide coverage</p>
+      <h2 class="text-2xl font-extrabold mb-3">Republic of Ireland and Northern Ireland</h2>
+      <p class="text-grey leading-relaxed mb-4">
+        Ryak Cleaning Ireland covers the Republic from our Dublin head office — including {city} and surrounding counties. <strong>Northern Ireland</strong> is managed by our Belfast team at{' '}
+        <a href={SITE.belfastUrl} class="text-red hover:underline" target="_blank" rel="noopener noreferrer">
+          ryakcleaning.com
+        </a>
+        . If you operate sites on both sides of the border, we coordinate as one group with consistent accredited standards.
+      </p>
+      <ul class="grid sm:grid-cols-2 gap-2 text-sm list-none mb-5">
+        <li>
+          <a href="/locations/belfast/" class="text-red font-semibold hover:underline">Commercial cleaning Belfast →</a>
+        </li>
+        <li>
+          <a href="/locations/derry/" class="text-red font-semibold hover:underline">Commercial cleaning Derry →</a>
+        </li>
+        <li>
+          <a href="/locations/newry/" class="text-red font-semibold hover:underline">Commercial cleaning Newry →</a>
+        </li>
+        <li>
+          <a href={SITE.belfastUrl} class="text-red font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
+            All Northern Ireland services →
+          </a>
+        </li>
+      </ul>
+      <p class="text-sm text-grey">
+        Republic of Ireland enquiries: <a href={SITE.phoneHref} class="text-red font-semibold">{SITE.phoneDisplay}</a>
+      </p>
+    </div>
+  )
+}

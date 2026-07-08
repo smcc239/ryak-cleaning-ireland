@@ -49,4 +49,12 @@ Street-front presentation matters for hospitality and retail along the coast. Ou
 
 Wicklow's proximity to our Dublin headquarters means rapid mobilisation for coastal and inland sites alike. Teams reach Bray, Greystones and Wicklow town within an hour, and your account manager can visit properties without lengthy travel affecting responsiveness. You receive local-speed service with the specialist capability — power washing, window cleaning, kitchen extract work — that regional generalists often lack.
 
+## Northern Ireland and cross-border coverage
+
+Ryak serves Wicklow and east Leinster from our Dublin headquarters, which also coordinates all-island programmes for organisations with commercial facilities across both jurisdictions. Hospitality groups and education bodies operating in Wicklow and Northern Ireland can consolidate under one contractor with consistent cleaning standards and reporting that covers both the Republic and the north.
+
+Northern Ireland services are delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with teams active in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) throughout the six counties. Wicklow clients with northern properties receive a coordinated mobilisation plan and aligned audit reporting under one accountable relationship.
+
+[Contract cleaning](/services/contract-cleaning/) and [window cleaning](/services/window-cleaning/) for all-island hospitality and commercial portfolios are coordinated through our Dublin operation.
+
 Whether you manage a hotel group along the coast, oversee contract cleaning for a school or need power washing and window cleaning for a business park, Ryak provides one accountable contractor with audited standards. Call 01 531 4044 for a free site assessment and quotation.

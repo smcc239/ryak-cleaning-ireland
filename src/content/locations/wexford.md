@@ -49,4 +49,12 @@ Ryak provides industrial, kitchen and contract cleaning across Wexford's food an
 
 Wexford's food production clients need a contractor with demonstrated HACCP capability and TR19 kitchen extract expertise — not a regional generalist. Ryak's Dublin headquarters coordinates south east mobilisation with directly employed teams trained for regulated food environments. You receive nationwide specialist depth with a named account manager and audit-ready documentation.
 
+## Northern Ireland and cross-border coverage
+
+Wexford's food processing sector supplies retailers and food service operations across the island, and Ryak's Dublin headquarters coordinates all-island cleaning programmes for producers with facilities in both the Republic and Northern Ireland. Consistent HACCP documentation and production hygiene standards are non-negotiable for cross-border food supply chains.
+
+Northern Ireland coverage is operated through our sister business at [ryakcleaning.com](https://ryakcleaning.com), with HACCP-aware teams in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) serving the six counties. Wexford food producers with northern processing or distribution sites receive aligned specifications and one audit-ready reporting format across both territories.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [commercial kitchen cleaning](/services/commercial-kitchen-cleaning/) for all-island food processing portfolios are coordinated through our Dublin operation with consistent documentation north and south.
+
 Whether you operate a processing plant in the county, manage hotel kitchens along the Rosslare coast or need contract cleaning across a mixed commercial portfolio, Ryak delivers consistent standards and documented compliance. Call 01 531 4044 for a free site assessment and quotation.

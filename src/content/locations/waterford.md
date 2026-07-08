@@ -50,4 +50,12 @@ Ryak provides contract and specialist cleaning across Waterford's commercial lan
 
 Waterford clients gain access to Ryak's nationwide specialist capability without relying on a local generalist. Our Dublin headquarters coordinates South East mobilisation with teams trained for food production, manufacturing and hospitality environments. TR19 kitchen extract cleaning, HACCP-aware industrial work and multi-site contract management sit under one accountable contractor.
 
+## Northern Ireland and cross-border coverage
+
+Waterford's food production and manufacturing sector is part of an all-island food industry where hygiene standards must be consistent across jurisdictions. Ryak serves Waterford from our Dublin headquarters, which coordinates nationwide RoI coverage and provides the connection point for organisations with facilities on both sides of the border.
+
+Northern Ireland services are delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with HACCP-aware teams in [Belfast](/locations/belfast/) and [Newry](/locations/newry/) covering the six counties. Food production and manufacturing clients operating cross-border portfolios receive one aligned specification, one audit format and one point of accountability.
+
+[Industrial cleaning](/services/industrial-cleaning/) and [commercial kitchen cleaning](/services/commercial-kitchen-cleaning/) for all-island food and manufacturing portfolios are coordinated from our Dublin base.
+
 Whether you operate a food production facility in Butlerstown, manage a hotel group in the city centre or need contract cleaning across a mixed commercial portfolio, Ryak delivers audited standards and directly employed teams. Call 01 531 4044 for a free site assessment and quotation.

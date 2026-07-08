@@ -22,6 +22,11 @@ export const SITE = {
     verified: false,
   },
   belfastUrl: 'https://www.ryakcleaning.com',
+  ukSite: {
+    url: 'https://www.ryakcleaning.com',
+    name: 'Ryak Cleaning UK',
+    contactPath: '/contact-us/',
+  },
   social: {
     facebook: 'https://www.facebook.com/ryakcleaning',
     linkedin: 'https://www.linkedin.com/company/ryak-cleaning',

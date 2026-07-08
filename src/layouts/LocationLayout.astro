@@ -9,6 +9,9 @@ import ServiceCard from '../components/ServiceCard.astro';
 import SectorCard from '../components/SectorCard.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import AuthorCredit from '../components/AuthorCredit.astro';
+import NorthernIrelandCallout from '../components/NorthernIrelandCallout.astro';
+import LocationLandingLinks from '../components/LocationLandingLinks.astro';
+import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
 import { getLocationImage } from '../utils/media';
@@ -22,6 +25,8 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
 const heroImage = getLocationImage(entry.slug);
+const isNI = data.area === 'northern-ireland';
+const ukUrl = data.ukSitePath ? new URL(data.ukSitePath, SITE.ukSite.url).href : SITE.belfastUrl;
 
 const allServices = await getCollection('services');
 const allSectors = await getCollection('sectors');
@@ -62,7 +67,7 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
   schema={schema}
 >
   <PageHero
-    eyebrow="Location"
+    eyebrow={isNI ? 'Northern Ireland' : 'Location'}
     title={`Commercial Cleaning ${data.city}`}
     description={data.intro}
     imageSrc={heroImage}
@@ -71,28 +76,56 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
     compact
   />
 
+  {
+    isNI && (
+      <section class="py-8 bg-stone border-b border-line">
+        <div class="wrap flex flex-wrap items-center justify-between gap-4">
+          <p class="text-sm text-grey max-w-2xl">
+            <strong class="text-ink">{data.city}</strong> is covered by our Belfast office. Visit{' '}
+            <a href={SITE.belfastUrl} class="text-red hover:underline" target="_blank" rel="noopener noreferrer">ryakcleaning.com</a>{' '}
+            for quotes and account management in Northern Ireland.
+          </p>
+          <Button href={ukUrl} external>Go to ryakcleaning.com</Button>
+        </div>
+      </section>
+    )
+  }
+
   <section class="py-16">
     <div class="wrap grid lg:grid-cols-3 gap-12">
       <div class="lg:col-span-2">
         <MediaImage
           src={heroImage}
           alt={`Ryak Cleaning services in ${data.city}`}
-          caption={`Mobile specialist teams serving ${data.city} and ${data.region}.`}
+          caption={isNI ? `${data.city} · Northern Ireland · ryakcleaning.com` : `Mobile specialist teams serving ${data.city} and ${data.region}.`}
           class="mb-10 reveal"
         />
         <div class="prose-content">
+          <NorthernIrelandCallout area={data.area} city={data.city} ukSitePath={data.ukSitePath} />
           <Content />
           <AuthorCredit />
         </div>
       </div>
       <aside class="lg:sticky lg:top-24 h-fit space-y-6">
-        <QuoteForm compact />
+        {
+          isNI ? (
+            <div class="bg-ink text-white rounded-card p-6 border border-line">
+              <h3 class="text-lg font-bold mb-2">Northern Ireland quotes</h3>
+              <p class="text-white/85 text-sm mb-4">Contact our Belfast team for {data.city} and all NI counties.</p>
+              <Button href={ukUrl} class="w-full justify-center" external>
+                Visit ryakcleaning.com
+              </Button>
+            </div>
+          ) : (
+            <QuoteForm compact />
+          )
+        }
         <div class="relative rounded-card overflow-hidden border border-line min-h-[240px]">
           <ResponsiveImage src={heroImage} alt="" aspect="card" sizes="400px" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"></div>
           <div class="relative p-6 flex flex-col justify-end min-h-[240px] text-white">
             <h3 class="text-xl font-bold">{data.city} coverage</h3>
-            <p class="text-white/85 text-sm mt-2">{data.region} · Mobile teams · {SITE.phoneDisplay}</p>
+            <p class="text-white/85 text-sm mt-2">{data.region} · {isNI ? 'NI via ryakcleaning.com' : `Mobile teams · ${SITE.phoneDisplay}`}</p>
           </div>
         </div>
       </aside>
@@ -100,7 +133,7 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
   </section>
 
   {
-    linkedServices.length > 0 && (
+    !isNI && linkedServices.length > 0 && (
       <section class="py-16 bg-stone">
         <div class="wrap">
           <SectionHead eyebrow={`Services in ${data.city}`} title="Popular cleaning services locally" />
@@ -120,7 +153,7 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
   }
 
   {
-    linkedSectors.length > 0 && (
+    !isNI && linkedSectors.length > 0 && (
       <section class="py-16">
         <div class="wrap">
           <SectionHead eyebrow="Local sectors" title={`Industries we clean in ${data.city}`} />
@@ -133,6 +166,29 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
                 index={i + 1}
               />
             ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {!isNI && <LocationLandingLinks city={data.city} />}
+
+  {
+    isNI && (
+      <section class="py-16 bg-stone">
+        <div class="wrap max-w-3xl text-center">
+          <SectionHead
+            eyebrow="Northern Ireland"
+            title={`Full cleaning services in ${data.city}`}
+            lead={`Contract cleaning, industrial, kitchen, window and specialist services in ${data.city} are delivered by our Belfast office with the same Ryak accreditations and directly employed teams.`}
+            class="mx-auto text-center [&_h2]:text-center [&_.lead]:mx-auto"
+          />
+          <div class="flex flex-wrap justify-center gap-4 mt-6">
+            <Button href={ukUrl} external>Services on ryakcleaning.com</Button>
+            <Button href={new URL(SITE.ukSite.contactPath, SITE.ukSite.url).href} variant="dark" external>
+              Contact Belfast
+            </Button>
           </div>
         </div>
       </section>

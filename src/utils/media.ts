@@ -45,6 +45,12 @@ export const MEDIA = {
     sligo: pexels(1118874, 1200),
     athlone: pexels(3184292, 1200),
     dundalk: pexels(250692, 1200),
+    belfast: pexels(1486804, 1200),
+    derry: pexels(635705, 1200),
+    newry: pexels(1396122, 1200),
+    antrim: pexels(417074, 1200),
+    armagh: pexels(5192240, 1200),
+    lisburn: pexels(1181406, 1200),
   },
 } as const;
 

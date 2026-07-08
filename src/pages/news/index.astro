@@ -1,27 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 import SectionHead from '../../components/SectionHead.astro';
+import Button from '../../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { MEDIA } from '../../utils/media';
+
+const posts = (await getCollection('news')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const topicLinks = [
+  { label: 'Commercial kitchen & TR19', href: '/news/tr19-kitchen-extract-guide/' },
+  { label: 'Data centre cleaning', href: '/news/data-centre-cleaning-ireland/' },
+  { label: 'Choosing a cleaning contractor', href: '/news/choosing-commercial-cleaning-company-ireland/' },
+  { label: 'Office cleaning checklist', href: '/news/office-cleaning-checklist-facility-managers/' },
+  { label: 'Healthcare cleaning standards', href: '/news/healthcare-cleaning-standards-ireland/' },
+  { label: 'Builders clean handover', href: '/news/builders-clean-handover-guide-ireland/' },
+];
 ---
 
 <BaseLayout
   title="Resources & Insights | Ryak Cleaning Ireland"
-  description="Commercial cleaning guides, TR19 advice and industry insights from Ryak Cleaning Ireland."
+  description="Commercial cleaning guides, TR19 advice, healthcare standards and facility management insights from Ryak Cleaning Ireland."
   breadcrumbs={buildBreadcrumbs([{ label: 'Resources', href: '/news/' }])}
 >
-  <section class="py-16 bg-stone">
-    <div class="wrap">
-      <SectionHead eyebrow="Resources" title="Guides and insights for Irish businesses" lead="Practical advice on kitchen extract cleaning, data centre standards and commercial cleaning best practice." />
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Resources"
+    title="Guides and insights for Irish businesses"
+    description="Practical advice for facilities managers — kitchen extract compliance, data centre standards, healthcare hygiene, office specifications and construction handover cleaning."
+    imageSrc={MEDIA.hero.news}
+    imageAlt="Ryak Cleaning resources and guides"
+    compact
+  />
 
   <section class="py-16">
-    <div class="wrap grid gap-4 max-w-3xl">
-      {
-        (await getCollection('news'))
-          .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-          .map((post) => (
+    <div class="wrap grid lg:grid-cols-3 gap-10">
+      <aside class="lg:col-span-1">
+        <h2 class="text-lg font-bold mb-4">Browse by topic</h2>
+        <ul class="grid gap-2 list-none text-sm">
+          {
+            topicLinks.map((link) => (
+              <li>
+                <a href={link.href} class="block py-2 px-3 rounded-md border border-line hover:border-red hover:text-red transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8 p-5 bg-stone rounded-card border border-line">
+          <p class="text-sm text-grey mb-3">Need site-specific advice?</p>
+          <Button href="/contact-us/" class="w-full justify-center !text-sm !py-2.5">Contact our Dublin team</Button>
+        </div>
+      </aside>
+
+      <div class="lg:col-span-2 grid gap-4">
+        {
+          posts.map((post) => (
             <a
               href={`/news/${post.slug}/`}
               class="block bg-white border border-line rounded-card p-6 hover:border-red transition-colors"
@@ -31,9 +66,20 @@ import { buildBreadcrumbs } from '../../utils/breadcrumbs';
               </time>
               <h2 class="text-xl font-bold mt-2 mb-2">{post.data.title}</h2>
               <p class="text-sm text-grey">{post.data.description}</p>
+              <span class="inline-block mt-3 text-red font-display font-bold text-sm">Read guide →</span>
             </a>
           ))
-      }
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap max-w-3xl prose-content">
+      <h2>Commercial cleaning resources across Ireland</h2>
+      <p>
+        These guides support facilities managers, landlords and operations teams across the Republic of Ireland. For Northern Ireland-specific advice and quotes, visit <a href="https://www.ryakcleaning.com" target="_blank" rel="noopener noreferrer">ryakcleaning.com</a>. Explore our <a href="/services/">cleaning services</a>, <a href="/sectors/">industry sectors</a> and <a href="/locations/">service areas</a> for keyword landing pages covering Dublin, Cork, Belfast and nationwide coverage.
+      </p>
     </div>
   </section>
 </BaseLayout>

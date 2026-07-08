@@ -49,4 +49,12 @@ Coastal exposure makes [power washing](/services/power-washing/) particularly va
 
 Donegal clients need a contractor who treats nationwide coverage as a commitment, not a marketing claim. Ryak's Dublin headquarters coordinates north west mobilisation with directly employed teams, planned scheduling and the specialist capability — marine industrial cleaning, power washing, hospitality contract programmes — that regional generalists often lack. Distance does not mean compromised standards.
 
+## Northern Ireland and cross-border coverage
+
+Donegal is Ireland's only county that shares a land border with three Northern Ireland counties — Derry, Fermanagh and Tyrone — making cross-border property portfolios a practical reality for many businesses here. Ryak serves Donegal from our Dublin headquarters and coordinates cleaning programmes for organisations with facilities on both sides of the border, maintaining consistent standards and audit documentation across both jurisdictions.
+
+Northern Ireland coverage is delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with teams in [Derry](/locations/derry/) and [Belfast](/locations/belfast/) serving the six counties. Donegal businesses managing hospitality, marine or commercial facilities that extend across the border deal with one contractor and one specification in both territories.
+
+[Contract cleaning](/services/contract-cleaning/) and [industrial cleaning](/services/industrial-cleaning/) for cross-border Donegal portfolios are coordinated to ensure consistent standards north and south.
+
 Whether you manage a hotel in Letterkenny, operate a marine processing facility on the coast or need contract cleaning across multiple Donegal sites, Ryak provides one accountable contractor with audited standards. Call 01 531 4044 for a free site assessment and quotation.

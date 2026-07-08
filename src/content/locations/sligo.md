@@ -49,4 +49,12 @@ When environments need intensive periodic attention, our [deep cleaning](/servic
 
 Sligo's medtech and manufacturing clients need a contractor with healthcare-adjacent training and genuine industrial capability — not a north west generalist with limited specialist depth. Ryak's Dublin headquarters coordinates Connacht mobilisation with directly employed teams and audited standards. You receive nationwide specialist programmes with a named account manager and documentation your compliance team can rely on.
 
+## Northern Ireland and cross-border coverage
+
+Sligo sits at the gateway between Connacht and the north west, with straightforward road links to Derry and beyond. Ryak serves Sligo from our Dublin headquarters and coordinates all-island programmes for medtech and manufacturing clients operating facilities in both the Republic and Northern Ireland. Consistent controlled-environment cleaning standards and audit documentation are essential across both jurisdictions for regulated industries.
+
+Northern Ireland coverage is delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with specialist teams in [Derry](/locations/derry/) and [Belfast](/locations/belfast/) serving the six counties. Sligo medtech and manufacturing clients with northern operations receive aligned specifications and one reporting format across the full portfolio.
+
+[Contract cleaning](/services/contract-cleaning/) and [industrial cleaning](/services/industrial-cleaning/) for all-island medtech and manufacturing programmes are coordinated from our Dublin base.
+
 Whether you operate a medtech facility in Finisklin, manage a manufacturing site in the county or need contract cleaning across a mixed commercial portfolio, Ryak provides one accountable contractor. Call 01 531 4044 for a free site assessment and quotation.

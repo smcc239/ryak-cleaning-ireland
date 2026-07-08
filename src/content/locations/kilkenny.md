@@ -49,4 +49,12 @@ Ryak provides specialist and contract cleaning tailored to Kilkenny's hospitalit
 
 Kilkenny clients gain access to Ryak's specialist kitchen and food production capability without relying on a local generalist who may lack TR19 expertise or HACCP training. Our Dublin headquarters coordinates south east mobilisation with directly employed teams and audited standards. You receive one accountable contractor covering kitchen extract work, contract cleaning and industrial services under a single specification.
 
+## Northern Ireland and cross-border coverage
+
+Kilkenny's food producers and hospitality operators increasingly supply all-island markets, and Ryak's Dublin headquarters provides the coordination point for cross-border cleaning programmes where consistent hygiene standards matter from Kilkenny kitchens to Northern Ireland production sites. All-island food and hospitality portfolios benefit from one contractor and aligned TR19 and HACCP standards across both jurisdictions.
+
+Northern Ireland services are delivered through our sister operation at [ryakcleaning.com](https://ryakcleaning.com), with teams serving [Belfast](/locations/belfast/) and [Newry](/locations/newry/) across the six counties. Kilkenny clients with northern facilities receive one specification, one audit format and one point of accountability for the full portfolio.
+
+[Commercial kitchen cleaning](/services/commercial-kitchen-cleaning/) and [contract cleaning](/services/contract-cleaning/) for all-island food and hospitality portfolios are coordinated from our Dublin operation.
+
 Whether you operate restaurants in the city centre, manage a food production facility in the county or need contract cleaning across a mixed hospitality portfolio, Ryak delivers documented compliance and consistent quality. Call 01 531 4044 for a free site assessment and quotation.
