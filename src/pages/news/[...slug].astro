@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const breadcrumbs = buildBreadcrumbs([{ label: 'News', href: '/news/' }, { label: entry.data.title }]);
+const breadcrumbs = buildBreadcrumbs([{ label: 'Resources', href: '/news/' }, { label: entry.data.title }]);
 const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
 ---
 

@@ -1,34 +1,74 @@
 ---
+import { getCollection } from 'astro:content';
 import Logo from './Logo.astro';
 import Button from './Button.astro';
+import NavMenu from './NavMenu.astro';
+import {
+  aboutLinks,
+  resourceLinks,
+  buildServiceMega,
+  buildSectorMega,
+  type NavItem,
+} from '../utils/navigation';
 
-const navItems = [
-  { label: 'Services', href: '/services/' },
-  { label: 'Sectors', href: '/sectors/' },
-  { label: 'About', href: '/about-us/' },
-  { label: 'Contact', href: '/contact-us/' },
+const services = (await getCollection('services'))
+  .filter((s) => !s.data.parent)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 8);
+
+const sectors = (await getCollection('sectors'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 8);
+
+const serviceLinks = services.map((s) => ({
+  label: s.data.title,
+  href: `/services/${s.slug}/`,
+  description: s.data.description.length > 72 ? `${s.data.description.slice(0, 69)}…` : s.data.description,
+}));
+
+const sectorLinks = sectors.map((s) => ({
+  label: s.data.title,
+  href: `/sectors/${s.slug}/`,
+  description: s.data.description.length > 72 ? `${s.data.description.slice(0, 69)}…` : s.data.description,
+}));
+
+const navItems: NavItem[] = [
+  {
+    label: 'Services',
+    href: '/services/',
+    mega: buildServiceMega(serviceLinks),
+  },
+  {
+    label: 'Sectors',
+    href: '/sectors/',
+    mega: buildSectorMega(sectorLinks),
+  },
+  {
+    label: 'About',
+    href: '/about-us/',
+    links: aboutLinks,
+  },
+  {
+    label: 'Resources',
+    href: '/news/',
+    links: resourceLinks,
+  },
+  {
+    label: 'Contact',
+    href: '/contact-us/',
+  },
 ];
 ---
 
 <header class="sticky top-0 z-50 bg-white border-b border-line">
-  <nav class="wrap flex items-center justify-between min-h-[78px] gap-5" aria-label="Main navigation">
-    <a href="/" class="flex items-center" aria-label="Ryak Cleaning Ireland home">
+  <nav class="wrap flex items-center justify-between min-h-[78px] gap-4" aria-label="Main navigation">
+    <a href="/" class="flex items-center shrink-0" aria-label="Ryak Cleaning Ireland home">
       <Logo />
     </a>
 
-    <ul class="hidden lg:flex gap-8 list-none font-display font-semibold text-[15px]">
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} class="py-1.5 border-b-2 border-transparent hover:text-red hover:border-red transition-colors">
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <NavMenu items={navItems} variant="desktop" />
 
-    <Button href="/contact-us/" class="hidden lg:inline-flex !py-2.5 !px-5 !text-sm">Request a Free Quote</Button>
+    <Button href="/contact-us/" class="hidden lg:inline-flex !py-2.5 !px-5 !text-sm shrink-0">Request a Free Quote</Button>
 
     <button
       id="menu-toggle"
@@ -44,20 +84,12 @@ const navItems = [
   </nav>
 
   <div id="mobile-menu" class="hidden lg:hidden border-t border-line bg-white" aria-hidden="true">
-    <ul class="wrap py-4 list-none font-display font-semibold">
-      {
-        navItems.map((item) => (
-          <li>
-            <a href={item.href} class="block py-3 border-b border-line hover:text-red transition-colors">
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-      <li class="pt-4">
+    <div class="wrap py-4">
+      <NavMenu items={navItems} variant="mobile" />
+      <div class="pt-4">
         <Button href="/contact-us/" class="w-full justify-center">Request a Free Quote</Button>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -69,5 +101,46 @@ const navItems = [
     const isOpen = menu?.classList.toggle('hidden') === false;
     toggle.setAttribute('aria-expanded', String(isOpen));
     menu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  const navItems = document.querySelectorAll('[data-nav-item]');
+
+  navItems.forEach((item) => {
+    const trigger = item.querySelector('[data-nav-trigger]');
+    const panel = item.querySelector('[data-nav-panel]');
+    if (!trigger || !panel) return;
+
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const isOpen = item.classList.contains('is-open');
+
+      navItems.forEach((other) => {
+        other.classList.remove('is-open');
+        other.querySelector('[data-nav-trigger]')?.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    navItems.forEach((item) => {
+      if (!item.contains(target)) {
+        item.classList.remove('is-open');
+        item.querySelector('[data-nav-trigger]')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    navItems.forEach((item) => {
+      item.classList.remove('is-open');
+      item.querySelector('[data-nav-trigger]')?.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>

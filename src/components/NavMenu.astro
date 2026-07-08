@@ -1,0 +1,152 @@
+---
+import type { NavItem } from '../utils/navigation';
+
+interface Props {
+  items: NavItem[];
+  variant: 'desktop' | 'mobile';
+}
+
+const { items, variant } = Astro.props;
+const isDesktop = variant === 'desktop';
+---
+
+{
+  isDesktop ? (
+    <ul class="hidden lg:flex items-center gap-1 list-none font-display font-semibold text-[15px]">
+      {items.map((item) => (
+        <li class="nav-item relative" data-nav-item>
+          {item.mega || item.links ? (
+            <>
+              <button
+                type="button"
+                class="nav-trigger flex items-center gap-1.5 px-3 py-2 rounded-md border-b-2 border-transparent hover:text-red transition-colors"
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-nav-trigger
+              >
+                {item.label}
+                <svg class="nav-chevron w-3.5 h-3.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+
+              {item.mega ? (
+                <div class="nav-panel nav-panel-mega absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible pointer-events-none transition-all duration-200" data-nav-panel>
+                  <div class="w-[min(92vw,680px)] bg-white border border-line rounded-card shadow-[0_20px_50px_rgba(20,21,26,0.12)] overflow-hidden">
+                    <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-line">
+                      {item.mega.map((column) => (
+                        <div class="p-5">
+                          <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-grey mb-3">{column.title}</p>
+                          <ul class="grid gap-1 list-none">
+                            {column.links.map((link) => (
+                              <li>
+                                <a href={link.href} class="block rounded-md px-3 py-2.5 hover:bg-stone hover:text-red transition-colors">
+                                  <span class="block font-semibold text-[14px]">{link.label}</span>
+                                  {link.description && <span class="block text-xs text-grey mt-0.5 font-normal line-clamp-2">{link.description}</span>}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                    <div class="border-t border-line bg-stone px-5 py-3 flex items-center justify-between gap-4">
+                      <a href={item.href} class="text-sm font-bold text-red hover:text-red-dark transition-colors">
+                        View all {item.label.toLowerCase()} →
+                      </a>
+                      <a href="/contact-us/" class="text-xs text-grey hover:text-red transition-colors">
+                        Need a quote? Call 01 531 4044
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div class="nav-panel nav-panel-dropdown absolute left-0 top-full pt-3 min-w-[260px] opacity-0 invisible pointer-events-none transition-all duration-200" data-nav-panel>
+                  <ul class="bg-white border border-line rounded-card shadow-[0_16px_40px_rgba(20,21,26,0.1)] py-2 list-none">
+                    {item.links?.map((link) => (
+                      <li>
+                        <a href={link.href} class="block px-4 py-3 hover:bg-stone hover:text-red transition-colors">
+                          <span class="block font-semibold text-[14px]">{link.label}</span>
+                          {link.description && <span class="block text-xs text-grey mt-0.5 font-normal">{link.description}</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
+          ) : (
+            <a href={item.href} class="block px-3 py-2 border-b-2 border-transparent hover:text-red hover:border-red transition-colors">
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ul class="list-none font-display font-semibold">
+      {items.map((item) => (
+        <li class="border-b border-line">
+          {item.mega || item.links ? (
+            <details class="mobile-nav-group">
+              <summary class="flex items-center justify-between py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                {item.label}
+                <svg class="w-4 h-4 text-grey" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="pb-3 pl-3 grid gap-1">
+                {item.mega
+                  ? item.mega.flatMap((column) =>
+                      column.links.map((link) => (
+                        <a href={link.href} class="block py-2 text-sm text-grey hover:text-red transition-colors">
+                          {link.label}
+                        </a>
+                      ))
+                    )
+                  : item.links?.map((link) => (
+                      <a href={link.href} class="block py-2 text-sm text-grey hover:text-red transition-colors">
+                        {link.label}
+                      </a>
+                    ))}
+                <a href={item.href} class="block py-2 text-sm font-bold text-red">
+                  All {item.label.toLowerCase()} →
+                </a>
+              </div>
+            </details>
+          ) : (
+            <a href={item.href} class="block py-3 hover:text-red transition-colors">
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .nav-item.is-open .nav-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-item.is-open .nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 1024px) {
+    .nav-item:hover .nav-panel,
+    .nav-item:focus-within .nav-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-item:hover .nav-chevron,
+    .nav-item:focus-within .nav-chevron {
+      transform: rotate(180deg);
+    }
+  }
+</style>
