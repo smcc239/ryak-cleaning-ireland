@@ -1,0 +1,57 @@
+---
+import type { BreadcrumbItem } from '../utils/breadcrumbs';
+
+interface Props {
+  items: BreadcrumbItem[];
+  variant?: 'bar' | 'inline';
+}
+
+const { items, variant = 'bar' } = Astro.props;
+const isBar = variant === 'bar';
+---
+
+{
+  isBar ? (
+    <nav aria-label="Breadcrumb" class="bg-stone border-b border-line">
+      <ol class="wrap flex flex-wrap items-center gap-x-2 gap-y-1 list-none m-0 py-3 text-xs text-grey">
+        {
+          items.map((item, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="text-line">/</span>}
+              {item.href ? (
+                <a href={item.href} class="hover:text-red transition-colors">
+                  {item.label}
+                </a>
+              ) : (
+                <span class="text-ink font-medium" aria-current="page">
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  ) : (
+    <nav aria-label="Breadcrumb" class="mb-2">
+      <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 list-none m-0 p-0 text-[13px] text-white/75">
+        {
+          items.map((item, i) => (
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="text-white/35">/</span>}
+              {item.href ? (
+                <a href={item.href} class="hover:text-white transition-colors">
+                  {item.label}
+                </a>
+              ) : (
+                <span class="text-white font-medium" aria-current="page">
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  )
+}

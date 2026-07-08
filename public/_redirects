@@ -1,0 +1,11 @@
+# Critical migration redirects from legacy WordPress site
+/services/deep-kitchen-cleaning/ /services/commercial-kitchen-cleaning/ 301
+/services/deep-kitchen-cleaning /services/commercial-kitchen-cleaning/ 301
+/services/test/ /services/floor-cleaning/ 301
+/services/test /services/floor-cleaning/ 301
+/services/transport-claning/ /sectors/transport/ 301
+/services/transport-claning /sectors/transport/ 301
+
+# Legacy path normalisation
+/contact/ /contact-us/ 301
+/about/ /about-us/ 301

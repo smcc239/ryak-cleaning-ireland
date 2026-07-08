@@ -1,0 +1,109 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const locations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<footer class="bg-ink text-[#AEB2BD] text-sm">
+  <div class="wrap">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-16 pb-12">
+      <div class="lg:col-span-1">
+        <Logo variant="footer" />
+        <p class="max-w-[300px] text-[13.5px] mt-4">
+          Commercial, industrial and contract cleaning across the island of Ireland. Family run since 2003.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm tracking-widest uppercase mb-4 font-display">Services</h4>
+        <ul class="grid gap-2 list-none">
+          <li><a href="/services/contract-cleaning/" class="hover:text-red transition-colors">Contract Cleaning</a></li>
+          <li><a href="/services/industrial-cleaning/" class="hover:text-red transition-colors">Industrial Cleaning</a></li>
+          <li><a href="/services/commercial-kitchen-cleaning/" class="hover:text-red transition-colors">Kitchen Deep Cleaning</a></li>
+          <li><a href="/services/ducting-ventilation-cleaning/" class="hover:text-red transition-colors">Ducting & Ventilation</a></li>
+          <li><a href="/services/window-cleaning/" class="hover:text-red transition-colors">Window Cleaning</a></li>
+          <li><a href="/services/road-sweeping/" class="hover:text-red transition-colors">Road Sweeping</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm tracking-widest uppercase mb-4 font-display">Sectors</h4>
+        <ul class="grid gap-2 list-none">
+          <li><a href="/sectors/data-centres/" class="hover:text-red transition-colors">Data Centres</a></li>
+          <li><a href="/sectors/food-production/" class="hover:text-red transition-colors">Food Production</a></li>
+          <li><a href="/sectors/healthcare/" class="hover:text-red transition-colors">Healthcare</a></li>
+          <li><a href="/sectors/manufacturing/" class="hover:text-red transition-colors">Manufacturing</a></li>
+          <li><a href="/sectors/marine-shipping/" class="hover:text-red transition-colors">Marine & Shipping</a></li>
+          <li><a href="/sectors/education/" class="hover:text-red transition-colors">Education</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm tracking-widest uppercase mb-4 font-display">Contact</h4>
+        <ul class="grid gap-2.5 list-none">
+          <li class="flex gap-2.5">
+            <svg class="w-3.5 h-3.5 fill-red flex-none mt-1" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"></path>
+            </svg>
+            {SITE.address.full}
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-3.5 h-3.5 fill-red flex-none mt-1" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"></path>
+            </svg>
+            <a href={SITE.phoneHref} class="hover:text-red transition-colors">{SITE.phoneDisplay}</a>
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-3.5 h-3.5 fill-red flex-none mt-1" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path>
+            </svg>
+            <a href={`mailto:${SITE.email}`} class="hover:text-red transition-colors">{SITE.email}</a>
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-3.5 h-3.5 fill-red flex-none mt-1" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2a10 10 0 1 0 10 10h-2A8 8 0 1 1 12 4zm1 4h-2v7l5.2 3.1 1-1.7L13 12z"></path>
+            </svg>
+            Belfast office:
+            <a href={SITE.belfastUrl} class="hover:text-red transition-colors ml-1" target="_blank" rel="noopener noreferrer"
+              >ryakcleaning.com</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-[#2C2E37] py-8">
+      <h4 class="text-white text-sm tracking-widest uppercase mb-4 font-display">Areas We Cover</h4>
+      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-2 list-none text-[13px]">
+        {
+          locations.map((loc) => (
+            <li>
+              <a href={`/locations/${loc.slug}/`} class="hover:text-red transition-colors">
+                {loc.data.city}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="border-t border-[#2C2E37] py-5 flex justify-between gap-3.5 flex-wrap text-xs text-[#7B808C]">
+      <span>&copy; {new Date().getFullYear()} Ryak Cleaning and Support Services.</span>
+      <span>
+        <a href="/privacy-policy/" class="hover:text-red transition-colors">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a href="/terms/" class="hover:text-red transition-colors">Terms & Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a
+  href={SITE.phoneHref}
+  class="fixed bottom-5 right-5 z-50 lg:hidden bg-red text-white font-display font-bold px-5 py-3 rounded-full shadow-lg hover:bg-red-dark transition-colors"
+  aria-label="Call Ryak Cleaning"
+>
+  Call Now
+</a>

@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import AccreditationStrip from '../../components/AccreditationStrip.astro';
+import Button from '../../components/Button.astro';
+import { SITE, ACCREDITATIONS } from '../../consts';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+
+const breadcrumbs = buildBreadcrumbs([{ label: 'Contact' }]);
+
+const contactSchema = {
+  '@type': 'ContactPage',
+  mainEntity: { '@id': `${SITE.url}/#organization` },
+};
+
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url), contactSchema];
+
+const sent = Astro.url.searchParams.get('sent') === '1';
+
+const contactCards = [
+  {
+    title: 'Phone',
+    detail: SITE.phoneDisplay,
+    sub: 'Speak to our Dublin team directly',
+    href: SITE.phoneHref,
+    external: false,
+  },
+  {
+    title: 'Email',
+    detail: SITE.email,
+    sub: 'We aim to respond within one working day',
+    href: `mailto:${SITE.email}`,
+    external: false,
+  },
+  {
+    title: 'Office hours',
+    detail: SITE.openingHours.weekdays,
+    sub: SITE.openingHours.emergency,
+    href: '/services/emergency-cleaning/',
+    external: false,
+  },
+];
+
+const nextSteps = [
+  'We review your site details and service requirements',
+  'A member of the team contacts you to clarify scope if needed',
+  'You receive a tailored, no-obligation quotation — usually within one working day',
+  'If you are happy to proceed, we schedule a site survey and agree start dates',
+];
+---
+
+<BaseLayout
+  title="Contact Ryak Cleaning Ireland | Request a Quote"
+  description="Contact Ryak Cleaning at Harcourt Centre, Dublin 2. Call 01 531 4044 or email info@ryakcleaning.ie for commercial cleaning across Ireland."
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <section class="py-16 bg-gradient-to-br from-red to-red-dark text-white">
+    <div class="wrap grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <SectionHead
+          eyebrow="Contact"
+          title="Tell us about your site"
+          lead="Request a tailored, no-obligation quotation for commercial, industrial or specialist cleaning anywhere in Ireland. For urgent fire, flood or emergency cleaning, call us directly — we respond 24/7."
+          dark
+        />
+
+        {
+          sent && (
+            <div class="mb-6 p-4 rounded-lg bg-white/15 border border-white/30 text-[#FBD9D5] text-sm" role="status">
+              Thank you — your enquiry has been sent. A member of our team will be in touch shortly.
+            </div>
+          )
+        }
+
+        <div class="grid gap-5 mt-2">
+          <a href={SITE.phoneHref} class="flex items-start gap-3 group">
+            <span class="w-10 h-10 rounded-lg bg-white/10 grid place-items-center flex-none">
+              <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z" />
+              </svg>
+            </span>
+            <span>
+              <span class="block font-display font-bold text-xl group-hover:underline">{SITE.phoneDisplay}</span>
+              <span class="block text-white/90 text-sm mt-0.5">Main line · Dublin office</span>
+            </span>
+          </a>
+
+          <a href={`mailto:${SITE.email}`} class="flex items-start gap-3 group">
+            <span class="w-10 h-10 rounded-lg bg-white/10 grid place-items-center flex-none">
+              <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </span>
+            <span>
+              <span class="block font-display font-bold text-lg group-hover:underline">{SITE.email}</span>
+              <span class="block text-white/90 text-sm mt-0.5">Quotes, contracts and general enquiries</span>
+            </span>
+          </a>
+
+          <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-lg bg-white/10 grid place-items-center flex-none">
+              <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
+              </svg>
+            </span>
+            <address class="not-italic">
+              <span class="block font-display font-bold text-lg">{SITE.shortName}</span>
+              <span class="block text-white/95 text-sm mt-1 leading-relaxed">
+                {SITE.address.line1}<br />
+                {SITE.address.line2}<br />
+                {SITE.address.city}, {SITE.address.postalCode}<br />
+                {SITE.address.country}
+              </span>
+              <a
+                href={SITE.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block mt-2 text-sm font-display font-bold hover:underline"
+              >
+                Get directions →
+              </a>
+            </address>
+          </div>
+        </div>
+      </div>
+
+      <QuoteForm />
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {
+          contactCards.map((card) => (
+            <a
+              href={card.href}
+              class="bg-white border border-line rounded-card p-6 hover:border-red transition-colors block"
+            >
+              <h2 class="font-display font-bold text-sm uppercase tracking-wide text-red mb-2">{card.title}</h2>
+              <p class="font-display font-bold text-lg text-ink mb-1">{card.detail}</p>
+              <p class="text-sm text-grey">{card.sub}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="wrap grid lg:grid-cols-2 gap-14 items-start">
+      <div>
+        <SectionHead
+          eyebrow="Visit Us"
+          title="Dublin head office"
+          lead="Our Irish operation is based at Harcourt Centre in Dublin 2. Mobile specialist teams cover every county nationwide — you do not need to visit the office to get a quote."
+        />
+
+        <div class="space-y-6 text-grey leading-relaxed">
+          <p>
+            Ryak Cleaning Ireland is the Republic of Ireland arm of Ryak Cleaning and Support Services. From our Dublin base we
+            coordinate contract cleaning, industrial deep cleans, commercial kitchen and TR19 work, window cleaning, data centre
+            protocols and 24/7 emergency response across the island.
+          </p>
+          <p>
+            <strong class="text-ink font-display">Northern Ireland clients</strong> are supported by our Belfast office at{' '}
+            <a href={SITE.belfastUrl} class="text-red hover:underline" target="_blank" rel="noopener noreferrer">
+              ryakcleaning.com
+            </a>.
+          </p>
+
+          <div class="p-5 bg-stone rounded-card border border-line">
+            <h3 class="font-display font-bold text-ink mb-3">Coverage</h3>
+            <ul class="grid sm:grid-cols-2 gap-2 text-sm list-none">
+              {
+                ['Dublin', 'Cork', 'Galway', 'Limerick', 'Waterford', 'All 32 counties'].map((area) => (
+                  <li class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 fill-red flex-none" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" />
+                    </svg>
+                    {area}
+                  </li>
+                ))
+              }
+            </ul>
+            <Button href="/locations/" class="mt-4 !text-sm !py-2.5 !px-5">View all locations</Button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-card overflow-hidden border border-line min-h-[360px] bg-stone">
+        <iframe
+          title="Ryak Cleaning Ireland office location map"
+          src={`https://maps.google.com/maps?q=${encodeURIComponent(SITE.address.mapsQuery)}&hl=en&z=16&output=embed`}
+          width="100%"
+          height="360"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-stone">
+    <div class="wrap grid lg:grid-cols-2 gap-14">
+      <div>
+        <SectionHead eyebrow="What Happens Next" title="How we handle your enquiry" />
+        <ol class="grid gap-4 list-none counter-reset-none">
+          {
+            nextSteps.map((step, i) => (
+              <li class="flex gap-4 items-start">
+                <span class="w-8 h-8 rounded-full bg-red text-white font-display font-bold text-sm grid place-items-center flex-none">
+                  {i + 1}
+                </span>
+                <p class="text-grey pt-1">{step}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div>
+        <SectionHead eyebrow="Accredited Contractor" title="Why facilities managers choose Ryak" />
+        <p class="text-grey leading-relaxed mb-6">
+          ISO 9001 and ISO 14001 registered, SafeContractor approved and Constructionline Gold. Every site receives documented
+          method statements and RAMS. Our operatives are directly employed, trained and vetted — not subcontracted out of sight.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {
+            ACCREDITATIONS.slice(0, 6).map((item) => (
+              <span class="bg-white border border-line rounded-md px-3 py-1.5 font-display font-bold text-xs text-grey">
+                {item}
+              </span>
+            ))
+          }
+        </div>
+        <Button href="/accreditations/" class="mt-6 !text-sm !py-2.5 !px-5">View accreditations</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="wrap">
+      <div class="bg-ink text-white rounded-card p-10 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl font-extrabold mb-3">Need emergency cleaning now?</h2>
+          <p class="text-[#B9BDC7] text-sm leading-relaxed">
+            Fire, flood, oil spill or urgent pre-inspection cleaning — our emergency response teams are on call 24/7 anywhere in
+            Ireland.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <Button href={SITE.phoneHref} variant="red">Call {SITE.phoneDisplay}</Button>
+          <Button href="/services/emergency-cleaning/" variant="ghost">Emergency cleaning services</Button>
+        </div>
+      </div>
+      <AccreditationStrip />
+    </div>
+  </section>
+</BaseLayout>

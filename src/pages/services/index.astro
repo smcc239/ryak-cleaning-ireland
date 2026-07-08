@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { MEDIA } from '../../utils/media';
+import { SITE } from '../../consts';
+
+const services = (await getCollection('services'))
+  .filter((s) => !s.data.parent)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbs = buildBreadcrumbs([{ label: 'Services' }]);
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+---
+
+<BaseLayout
+  title="Commercial Cleaning Services Ireland | Ryak Cleaning"
+  description="Full range of commercial cleaning services in Dublin and across Ireland. Contract, industrial, kitchen, window and specialist cleaning. Call 01 531 4044."
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Services"
+    title="Commercial cleaning services across Ireland"
+    description="One accredited contractor for every cleaning requirement, from daily contract cleaning to specialist industrial deep cleans."
+    imageSrc={MEDIA.hero.services}
+    imageAlt="Commercial cleaning services across Ireland"
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {
+        services.map((service) => (
+          <ServiceCard
+            title={service.data.title}
+            description={service.data.description}
+            href={`/services/${service.slug}/`}
+            icon={service.data.icon}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

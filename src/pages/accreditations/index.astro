@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import MediaImage from '../../components/MediaImage.astro';
+import AccreditationStrip from '../../components/AccreditationStrip.astro';
+import { ACCREDITATIONS } from '../../consts';
+import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { MEDIA } from '../../utils/media';
+const breadcrumbs = buildBreadcrumbs([{ label: 'Accreditations' }]);
+---
+
+<BaseLayout
+  title="Accreditations | Ryak Cleaning Ireland"
+  description="ISO 9001, ISO 14001, SafeContractor, Constructionline Gold and BICSc trained teams. Ryak Cleaning Ireland accreditations."
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+>
+  <PageHero
+    eyebrow="Accreditations"
+    title="Accredited and auditable at every level"
+    description="Our accreditations demonstrate the standards Irish facilities managers expect from a commercial cleaning contractor."
+    imageSrc={MEDIA.hero.about}
+    imageAlt="Ryak Cleaning accreditations and standards"
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap max-w-4xl grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+          {
+            ACCREDITATIONS.map((item) => (
+              <div class="bg-white border border-line rounded-card p-6 font-display font-bold text-lg">
+                {item}
+              </div>
+            ))
+          }
+        </div>
+        <p class="text-grey leading-relaxed">
+          Every site receives documented method statements and RAMS. Regular internal audits ensure our teams deliver consistently, whether cleaning a Dublin office or an industrial plant in Cork.
+        </p>
+      </div>
+      <MediaImage
+        src={MEDIA.feature.industrial}
+        alt="Accredited industrial cleaning by Ryak"
+        caption="ISO accredited processes on every site."
+      />
+    </div>
+    <div class="wrap">
+      <AccreditationStrip />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+---
+
+<BaseLayout
+  title="Privacy Policy | Ryak Cleaning Ireland"
+  description="Privacy policy for Ryak Cleaning Ireland website and enquiry forms."
+  breadcrumbs={buildBreadcrumbs([{ label: 'Privacy Policy' }])}
+  noindex
+>
+  <section class="py-16">
+    <div class="wrap max-w-3xl prose-content">
+      <h1 class="text-4xl font-black mb-6">Privacy Policy</h1>
+      <p>
+        Ryak Cleaning and Support Services respects your privacy. Information submitted through our enquiry forms is used solely to respond to your request and provide quotations for our services.
+      </p>
+      <p>
+        We do not sell or share your personal data with third parties except where required to deliver our services or comply with legal obligations. Data is processed in accordance with applicable Irish and EU data protection legislation.
+      </p>
+      <p>
+        To request access to or deletion of your data, contact us at <a href="mailto:info@ryakcleaning.ie" class="text-red hover:underline">info@ryakcleaning.ie</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import { SITE } from '../consts';
+
+interface Props {
+  graph: Record<string, unknown>[];
+}
+
+const { graph } = Astro.props;
+
+const organization = {
+  '@type': ['Organization', 'LocalBusiness', 'CleaningService'],
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/images/ryak-logo.webp`,
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.countryCode,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE.geo.latitude,
+    longitude: SITE.geo.longitude,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Ireland',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
+  sameAs: [SITE.social.facebook, SITE.social.linkedin, SITE.social.twitter],
+};
+
+const fullGraph = [{ ...organization }, ...graph];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': fullGraph,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

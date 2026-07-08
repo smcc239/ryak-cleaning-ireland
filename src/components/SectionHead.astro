@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  class?: string;
+  dark?: boolean;
+}
+
+const { eyebrow, title, lead, class: className = '', dark = false } = Astro.props;
+---
+
+<div class:list={['max-w-[720px] mb-11', className]}>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+  <h2 class:list={['text-[clamp(28px,3.6vw,42px)] font-extrabold mt-3.5 mb-3.5', dark && 'text-white']}>
+    {title}
+  </h2>
+  {lead && <p class:list={['lead', dark && '!text-white']}>{lead}</p>}
+</div>

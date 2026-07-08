@@ -1,0 +1,79 @@
+---
+import type { BreadcrumbItem } from '../utils/breadcrumbs';
+import { getHreflangAlternates } from '../utils/hreflang';
+import { getOgImage } from '../utils/media';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const { title, description, canonical, ogImage, noindex = false } = Astro.props;
+import { SITE } from '../consts';
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
+const ogImageUrl = ogImage ?? getOgImage(Astro.url.pathname, SITE.url);
+const hreflangAlternates = getHreflangAlternates(Astro.url.pathname);
+
+const gaId = import.meta.env.PUBLIC_GA4_ID;
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+---
+
+<!-- Primary Meta -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+
+<!-- Hreflang -->
+{
+  hreflangAlternates.map((alt) => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))
+}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Schema slot -->
+<slot name="schema" />
+
+{
+  gaId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+      <script is:inline define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    </>
+  )
+}

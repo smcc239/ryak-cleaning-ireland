@@ -1,0 +1,133 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import MediaImage from '../components/MediaImage.astro';
+import SectionHead from '../components/SectionHead.astro';
+import FAQSection from '../components/FAQSection.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import AuthorCredit from '../components/AuthorCredit.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Button from '../components/Button.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
+import { getSectorImage } from '../utils/media';
+import { SITE } from '../consts';
+
+interface Props {
+  entry: Awaited<ReturnType<typeof getCollection<'sectors'>>>[number];
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+const slug = entry.slug;
+
+const allServices = await getCollection('services');
+const heroImage = getSectorImage(slug);
+
+const linkedServices = allServices
+  .filter((s) => data.services.includes(s.slug))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbs = buildBreadcrumbs([
+  { label: 'Sectors', href: '/sectors/' },
+  { label: data.title },
+]);
+
+const faqSchema =
+  data.faqs.length > 0
+    ? {
+        '@type': 'FAQPage',
+        mainEntity: data.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      }
+    : null;
+
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Sector"
+    title={`${data.title} Cleaning Services Ireland`}
+    description={data.intro}
+    imageSrc={heroImage}
+    imageAlt={`${data.title} cleaning services in Ireland`}
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <MediaImage
+          src={heroImage}
+          alt={`Specialist cleaning for ${data.title.toLowerCase()} environments in Ireland`}
+          caption={`Compliance-led cleaning for Ireland's ${data.title.toLowerCase()} sector.`}
+          class="mb-10 reveal"
+        />
+        <div class="prose-content">
+          <Content />
+
+          <div class="mt-8 p-6 bg-red-tint border border-red/20 rounded-card">
+            <h3 class="text-lg font-bold text-ink mb-2">Compliance focus</h3>
+            <p class="text-grey !mb-0">{data.compliance}</p>
+          </div>
+
+          {
+            data.proofPoint && (
+              <div class="mt-8 p-6 bg-stone border border-line rounded-card">
+                <h3 class="text-lg font-bold text-ink mb-2">Client insight</h3>
+                <p class="text-grey !mb-0">{data.proofPoint}</p>
+              </div>
+            )
+          }
+        </div>
+        <AuthorCredit compact />
+      </div>
+
+      <aside class="lg:sticky lg:top-24 h-fit">
+        <QuoteForm compact />
+      </aside>
+    </div>
+  </section>
+
+  {
+    linkedServices.length > 0 && (
+      <section class="py-16 bg-stone">
+        <div class="wrap">
+          <SectionHead eyebrow="Services" title="Relevant cleaning services for this sector" />
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {linkedServices.map((service) => (
+              <ServiceCard
+                title={service.data.title}
+                description={service.data.description}
+                href={`/services/${service.slug}/`}
+                icon={service.data.icon}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <FAQSection faqs={data.faqs} />
+
+  <section class="py-16 bg-gradient-to-br from-red to-red-dark text-white">
+    <div class="wrap text-center max-w-2xl mx-auto">
+      <h2 class="text-[clamp(28px,3.6vw,42px)] font-extrabold mb-4">Discuss your {data.title.toLowerCase()} cleaning requirements</h2>
+      <p class="text-white/95 mb-6">Our Dublin team delivers sector-specific cleaning across Ireland.</p>
+      <Button href="/contact-us/">Request a Free Quote</Button>
+    </div>
+  </section>
+</BaseLayout>

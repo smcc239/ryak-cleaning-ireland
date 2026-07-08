@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+---
+
+<BaseLayout
+  title="Terms & Conditions | Ryak Cleaning Ireland"
+  description="Terms and conditions for Ryak Cleaning Ireland services."
+  breadcrumbs={buildBreadcrumbs([{ label: 'Terms & Conditions' }])}
+  noindex
+>
+  <section class="py-16">
+    <div class="wrap max-w-3xl prose-content">
+      <h1 class="text-4xl font-black mb-6">Terms & Conditions</h1>
+      <p>
+        Services provided by Ryak Cleaning and Support Services are subject to agreed terms set out in individual contracts and quotations. All work is carried out in accordance with documented method statements and RAMS.
+      </p>
+      <p>
+        Quotations are valid for 30 days unless otherwise stated. Payment terms are agreed at contract commencement. For full contractual terms, contact our Dublin office.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

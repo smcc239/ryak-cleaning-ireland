@@ -1,0 +1,143 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import MediaImage from '../components/MediaImage.astro';
+import SectionHead from '../components/SectionHead.astro';
+import FAQSection from '../components/FAQSection.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectorCard from '../components/SectorCard.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import AuthorCredit from '../components/AuthorCredit.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
+import { getLocationImage } from '../utils/media';
+import { SITE } from '../consts';
+
+interface Props {
+  entry: Awaited<ReturnType<typeof getCollection<'locations'>>>[number];
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+const heroImage = getLocationImage(entry.slug);
+
+const allServices = await getCollection('services');
+const allSectors = await getCollection('sectors');
+
+const linkedServices = allServices
+  .filter((s) => data.services.includes(s.slug))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const linkedSectors = allSectors
+  .filter((s) => data.sectors.includes(s.slug))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbs = buildBreadcrumbs([
+  { label: 'Locations', href: '/locations/' },
+  { label: data.city },
+]);
+
+const faqSchema =
+  data.faqs && data.faqs.length > 0
+    ? {
+        '@type': 'FAQPage',
+        mainEntity: data.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      }
+    : null;
+
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Location"
+    title={`Commercial Cleaning ${data.city}`}
+    description={data.intro}
+    imageSrc={heroImage}
+    imageAlt={`Commercial cleaning services in ${data.city}, Ireland`}
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <MediaImage
+          src={heroImage}
+          alt={`Ryak Cleaning services in ${data.city}`}
+          caption={`Mobile specialist teams serving ${data.city} and ${data.region}.`}
+          class="mb-10 reveal"
+        />
+        <div class="prose-content">
+          <Content />
+          <AuthorCredit />
+        </div>
+      </div>
+      <aside class="lg:sticky lg:top-24 h-fit space-y-6">
+        <QuoteForm compact />
+        <div class="relative rounded-card overflow-hidden border border-line min-h-[240px]">
+          <ResponsiveImage src={heroImage} alt="" aspect="card" sizes="400px" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent"></div>
+          <div class="relative p-6 flex flex-col justify-end min-h-[240px] text-white">
+            <h3 class="text-xl font-bold">{data.city} coverage</h3>
+            <p class="text-white/85 text-sm mt-2">{data.region} · Mobile teams · {SITE.phoneDisplay}</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {
+    linkedServices.length > 0 && (
+      <section class="py-16 bg-stone">
+        <div class="wrap">
+          <SectionHead eyebrow={`Services in ${data.city}`} title="Popular cleaning services locally" />
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {linkedServices.map((service) => (
+              <ServiceCard
+                title={service.data.title}
+                description={service.data.description}
+                href={`/services/${service.slug}/`}
+                icon={service.data.icon}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    linkedSectors.length > 0 && (
+      <section class="py-16">
+        <div class="wrap">
+          <SectionHead eyebrow="Local sectors" title={`Industries we clean in ${data.city}`} />
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {linkedSectors.map((sector, i) => (
+              <SectorCard
+                title={sector.data.title}
+                description={sector.data.description}
+                href={`/sectors/${sector.slug}/`}
+                index={i + 1}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {data.faqs && data.faqs.length > 0 && <FAQSection faqs={data.faqs} />}
+</BaseLayout>

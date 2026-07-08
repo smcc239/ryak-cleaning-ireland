@@ -1,0 +1,19 @@
+---
+import { ACCREDITATIONS } from '../consts';
+---
+
+<div class="mt-11 border border-dashed border-line rounded-card p-5 md:p-6 flex flex-wrap gap-3 md:gap-x-6 items-center justify-center">
+  {
+    ACCREDITATIONS.map((item) => {
+      const parts = item.split(' ');
+      const bold = parts[0];
+      const rest = parts.slice(1).join(' ');
+      return (
+        <span class="font-display font-bold text-[13px] tracking-wide text-grey uppercase">
+          <b class="text-red">{bold}</b>
+          {rest ? ` ${rest}` : ''}
+        </span>
+      );
+    })
+  }
+</div>

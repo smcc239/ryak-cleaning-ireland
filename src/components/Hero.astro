@@ -1,0 +1,73 @@
+---
+import Button from './Button.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  imageSrc?: string;
+  imageAlt?: string;
+  priority?: boolean;
+}
+
+const {
+  eyebrow = 'Commercial Cleaning Company Ireland',
+  title,
+  description,
+  primaryCta = { label: 'Request a Free Quote', href: '/contact-us/' },
+  secondaryCta = { label: 'Explore Our Sectors', href: '/sectors/' },
+  imageSrc = 'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1800',
+  imageAlt = 'Professional cleaning operative working in a commercial facility',
+  priority = true,
+} = Astro.props;
+
+const chips = ['ISO 9001:2015', 'ISO 14001:2015', 'Alcumus SafeContractor', 'Constructionline Gold', 'BICSc Trained Teams'];
+---
+
+<section class="relative bg-ink text-white overflow-hidden min-h-[420px] md:min-h-[480px] flex items-stretch">
+  <div class="absolute inset-0 min-h-[420px] md:min-h-[480px]">
+    <ResponsiveImage src={imageSrc} alt={imageAlt} priority={priority} aspect="hero" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-red/25" aria-hidden="true"></div>
+  </div>
+
+  <div class="wrap relative w-full z-10 pt-16 pb-20 md:pt-20 md:pb-24">
+    <span class="eyebrow">{eyebrow}</span>
+    <h1 class="text-[clamp(34px,5vw,58px)] font-black max-w-[760px] mt-4 mb-5 leading-tight">
+      <slot name="title">{title}</slot>
+    </h1>
+    <p class="max-w-[600px] text-white text-[17.5px] leading-relaxed">{description}</p>
+
+    <div class="flex gap-3.5 mt-8 flex-wrap">
+      <Button href={primaryCta.href}>
+        {primaryCta.label}
+        <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.6 16.6 13.2 12 8.6 7.4 10 6l6 6-6 6z"></path>
+        </svg>
+      </Button>
+      {
+        secondaryCta && (
+          <Button href={secondaryCta.href} variant="ghost">
+            {secondaryCta.label}
+          </Button>
+        )
+      }
+    </div>
+
+    <div class="flex gap-2.5 flex-wrap mt-10">
+      {
+        chips.map((chip) => {
+          const [bold, ...rest] = chip.split(' ');
+          return (
+            <span class="chip">
+              <b>{bold}</b>
+              {rest.length ? ` ${rest.join(' ')}` : ''}
+            </span>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

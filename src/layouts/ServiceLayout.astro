@@ -1,0 +1,148 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import MediaImage from '../components/MediaImage.astro';
+import SectionHead from '../components/SectionHead.astro';
+import FAQSection from '../components/FAQSection.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import AccreditationStrip from '../components/AccreditationStrip.astro';
+import AuthorCredit from '../components/AuthorCredit.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectorCard from '../components/SectorCard.astro';
+import Button from '../components/Button.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
+import { getServiceImage } from '../utils/media';
+import { SITE } from '../consts';
+
+interface Props {
+  entry: Awaited<ReturnType<typeof getCollection<'services'>>>[number];
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+const slug = entry.slug;
+
+const allSectors = await getCollection('sectors');
+const heroImage = getServiceImage(data.icon);
+
+const linkedSectors = allSectors
+  .filter((s) => data.sectors.includes(s.slug))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const breadcrumbs = buildBreadcrumbs([
+  { label: 'Services', href: '/services/' },
+  { label: data.title },
+]);
+
+const serviceSchema = {
+  '@type': 'Service',
+  name: data.title,
+  description: data.description,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: { '@type': 'Country', name: 'Ireland' },
+  url: `${SITE.url}/services/${slug}/`,
+};
+
+const faqSchema =
+  data.faqs.length > 0
+    ? {
+        '@type': 'FAQPage',
+        mainEntity: data.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      }
+    : null;
+
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url), serviceSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<BaseLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Service"
+    title={data.title}
+    description={data.intro}
+    imageSrc={heroImage}
+    imageAlt={`${data.title} across Ireland`}
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap grid lg:grid-cols-3 gap-12">
+      <div class="lg:col-span-2">
+        <MediaImage
+          src={heroImage}
+          alt={`Professional ${data.title.toLowerCase()} in Ireland`}
+          caption={`Accredited ${data.title.toLowerCase()} delivered nationwide from our Dublin base.`}
+          class="mb-10 reveal"
+        />
+        <div class="prose-content">
+          <Content />
+
+          <h2>What is included</h2>
+          <ul>
+            {data.included.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <AuthorCredit compact />
+      </div>
+
+      <aside class="lg:sticky lg:top-24 h-fit">
+        <QuoteForm compact />
+        <div class="mt-6 p-5 bg-stone rounded-card border border-line">
+          <p class="font-display font-bold text-sm mb-2">Need urgent cleaning?</p>
+          <a href={SITE.phoneHref} class="text-red font-display font-bold text-lg hover:text-red-dark transition-colors">
+            {SITE.phoneDisplay}
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {
+    linkedSectors.length > 0 && (
+      <section class="py-16 bg-stone">
+        <div class="wrap">
+          <SectionHead eyebrow="Sectors" title="Industries we support with this service" />
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {linkedSectors.map((sector, i) => (
+              <SectorCard
+                title={sector.data.title}
+                description={sector.data.description}
+                href={`/sectors/${sector.slug}/`}
+                index={i + 1}
+                featured={sector.data.featured}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <AccreditationStrip />
+
+  <FAQSection faqs={data.faqs} />
+
+  <section class="py-16 bg-gradient-to-br from-red to-red-dark text-white">
+    <div class="wrap grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="eyebrow !text-white">Get a Quote</span>
+        <h2 class="text-[clamp(28px,3.6vw,42px)] font-extrabold mt-3 mb-4">Ready to discuss your requirements?</h2>
+        <p class="text-white/95 text-base">Contact our Dublin team for a tailored, no-obligation quotation.</p>
+        <Button href="/contact-us/" class="mt-6">Request a Free Quote</Button>
+      </div>
+      <QuoteForm />
+    </div>
+  </section>
+</BaseLayout>

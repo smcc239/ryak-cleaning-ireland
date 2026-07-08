@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { getLocationImage, MEDIA } from '../../utils/media';
+import { SITE } from '../../consts';
+
+const locations = (await getCollection('locations')).sort((a, b) => a.data.order - b.data.order);
+const breadcrumbs = buildBreadcrumbs([{ label: 'Locations' }]);
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+---
+
+<BaseLayout
+  title="Commercial Cleaning Locations Ireland | Ryak Cleaning"
+  description="Commercial cleaning in Dublin, Cork, Galway, Limerick and across Ireland. Nationwide coverage from our Dublin base. Call 01 531 4044."
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Locations"
+    title="Dublin based, covering all of Ireland"
+    description="Mobile specialist teams reaching every county in the Republic of Ireland."
+    imageSrc={MEDIA.hero.locations}
+    imageAlt="Commercial cleaning locations across Ireland"
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        locations.map((loc) => (
+          <a
+            href={`/locations/${loc.slug}/`}
+            class="group bg-white border border-line rounded-card overflow-hidden hover:border-red hover:-translate-y-1 transition-all"
+          >
+            <div class="aspect-video relative overflow-hidden bg-stone">
+              <img
+                src={getLocationImage(loc.slug)}
+                alt={`Commercial cleaning in ${loc.data.city}`}
+                width={600}
+                height={340}
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="p-5">
+              <h2 class="text-xl font-bold mb-2">Commercial Cleaning {loc.data.city}</h2>
+              <p class="text-sm text-grey mb-3">{loc.data.description}</p>
+              <span class="text-red font-display font-bold text-sm">{loc.data.region} →</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

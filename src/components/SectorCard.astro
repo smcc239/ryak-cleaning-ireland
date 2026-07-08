@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  index: number;
+  featured?: boolean;
+  tag?: string;
+}
+
+const { title, description, href, index, featured = false, tag } = Astro.props;
+const idx = String(index).padStart(2, '0');
+---
+
+<a
+  href={href}
+  class:list={[
+    'relative border rounded-card p-5 min-h-[196px] flex flex-col justify-end gap-2 overflow-hidden transition-all hover:border-red hover:-translate-y-1',
+    featured
+      ? 'bg-gradient-to-br from-red to-red-dark border-red text-white'
+      : 'border-[#2C2E37] bg-gradient-to-br from-[#1B1C22] to-ink text-white',
+  ]}
+>
+  {tag && (
+    <span class="absolute top-3.5 left-4 font-display font-bold text-[10.5px] tracking-widest uppercase bg-white text-red rounded px-2 py-0.5">
+      {tag}
+    </span>
+  )}
+  <span class:list={['absolute top-3.5 right-4 font-display font-black text-[15px] tracking-wide', featured ? 'text-white/40' : 'text-[#3A3C46]']}>
+    {idx}
+  </span>
+  <h3 class="text-[16.5px] font-bold relative">{title}</h3>
+  <p class:list={['text-[12.5px] leading-snug relative', featured ? 'text-[#FBD9D5]' : 'text-[#9AA0AC]']}>{description}</p>
+</a>

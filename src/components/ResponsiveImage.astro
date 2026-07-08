@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  priority?: boolean;
+  widths?: number[];
+  sizes?: string;
+  aspect?: 'hero' | 'content' | 'card';
+}
+
+const {
+  src,
+  alt,
+  class: className = '',
+  priority = false,
+  widths = [640, 960, 1280, 1800],
+  sizes = '100vw',
+  aspect = 'hero',
+} = Astro.props;
+
+const aspectClass =
+  aspect === 'card' ? 'aspect-video' : aspect === 'content' ? 'aspect-video' : 'absolute inset-0 w-full h-full object-cover object-center';
+---
+
+{
+  aspect === 'hero' ? (
+    <Image
+      src={src}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchpriority={priority ? 'high' : 'auto'}
+      class:list={[aspectClass, className]}
+      width={1800}
+      height={1200}
+    />
+  ) : (
+    <Image
+      src={src}
+      alt={alt}
+      widths={[480, 768, 1024, 1200]}
+      sizes={sizes}
+      format="webp"
+      loading="lazy"
+      class:list={[aspectClass, className]}
+      width={1200}
+      height={800}
+    />
+  )
+}

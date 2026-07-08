@@ -1,0 +1,73 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+
+const navItems = [
+  { label: 'Services', href: '/services/' },
+  { label: 'Sectors', href: '/sectors/' },
+  { label: 'About', href: '/about-us/' },
+  { label: 'Contact', href: '/contact-us/' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-line">
+  <nav class="wrap flex items-center justify-between min-h-[78px] gap-5" aria-label="Main navigation">
+    <a href="/" class="flex items-center" aria-label="Ryak Cleaning Ireland home">
+      <Logo />
+    </a>
+
+    <ul class="hidden lg:flex gap-8 list-none font-display font-semibold text-[15px]">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href} class="py-1.5 border-b-2 border-transparent hover:text-red hover:border-red transition-colors">
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button href="/contact-us/" class="hidden lg:inline-flex !py-2.5 !px-5 !text-sm">Request a Free Quote</Button>
+
+    <button
+      id="menu-toggle"
+      class="lg:hidden bg-transparent border-0 cursor-pointer p-1.5"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block w-6 h-0.5 bg-ink my-1 rounded-sm"></span>
+      <span class="block w-6 h-0.5 bg-ink my-1 rounded-sm"></span>
+      <span class="block w-6 h-0.5 bg-ink my-1 rounded-sm"></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-line bg-white" aria-hidden="true">
+    <ul class="wrap py-4 list-none font-display font-semibold">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href} class="block py-3 border-b border-line hover:text-red transition-colors">
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-4">
+        <Button href="/contact-us/" class="w-full justify-center">Request a Free Quote</Button>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+</script>

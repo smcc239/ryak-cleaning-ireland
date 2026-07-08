@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import MediaImage from '../../components/MediaImage.astro';
+import AccreditationStrip from '../../components/AccreditationStrip.astro';
+import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { MEDIA } from '../../utils/media';
+
+const breadcrumbs = buildBreadcrumbs([{ label: 'About Us' }]);
+---
+
+<BaseLayout
+  title="About Ryak Cleaning Ireland | Commercial Cleaning Dublin"
+  description="Family-run commercial cleaning company in Dublin, serving Ireland since 2003. ISO accredited, directly employed teams. Call 01 531 4044."
+  breadcrumbs={breadcrumbs}
+  breadcrumbInHero
+>
+  <PageHero
+    eyebrow="About Us"
+    title="A family-run cleaning company serving Ireland"
+    description="Ryak Cleaning Ireland is the Republic of Ireland operation of Ryak Cleaning and Support Services, delivering commercial, industrial and specialist cleaning nationwide from our Dublin base."
+    imageSrc={MEDIA.hero.about}
+    imageAlt="Ryak Cleaning team at work in Ireland"
+    breadcrumbs={breadcrumbs}
+    compact
+  />
+
+  <section class="py-16">
+    <div class="wrap max-w-4xl grid md:grid-cols-2 gap-10 items-start">
+      <div class="prose-content">
+        <p>
+          For over 20 years, Ryak has supported Irish businesses with cleaning services they can audit, reference and rely on. Our operatives are directly employed, trained and vetted — not subcontracted out of sight.
+        </p>
+        <p>
+          From daily contract cleaning in Dublin offices to specialist data centre protocols and TR19 kitchen extract cleaning nationwide, we hold one quality standard across every service and every county.
+        </p>
+        <p>
+          Our Irish operation runs from Dublin. Northern Ireland clients are supported by our Belfast office at <a href="https://www.ryakcleaning.com" class="text-red hover:underline">ryakcleaning.com</a>.
+        </p>
+      </div>
+      <MediaImage
+        src={MEDIA.feature.office}
+        alt="Commercial office cleaning by Ryak in Dublin"
+        caption="Directly employed teams delivering audited standards across Ireland."
+      />
+    </div>
+    <div class="wrap">
+      <AccreditationStrip />
+    </div>
+  </section>
+</BaseLayout>

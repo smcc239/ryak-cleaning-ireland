@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuthorCredit from '../../components/AuthorCredit.astro';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { SITE } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const breadcrumbs = buildBreadcrumbs([{ label: 'News', href: '/news/' }, { label: entry.data.title }]);
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+---
+
+<BaseLayout
+  title={entry.data.metaTitle}
+  description={entry.data.metaDescription}
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <article class="py-16">
+    <div class="wrap max-w-3xl">
+      <time datetime={entry.data.pubDate.toISOString()} class="text-xs text-grey uppercase tracking-wide">
+        {entry.data.pubDate.toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </time>
+      <h1 class="text-[clamp(32px,4vw,48px)] font-black mt-3 mb-8">{entry.data.title}</h1>
+      <div class="prose-content">
+        <Content />
+      </div>
+      <AuthorCredit compact />
+    </div>
+  </article>
+</BaseLayout>

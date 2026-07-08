@@ -1,0 +1,21 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<aside
+  class:list={[
+    'border-t border-line pt-6 mt-10 text-sm text-grey',
+    compact && 'mt-6 pt-4',
+  ]}
+  aria-label="Content authority"
+>
+  <p>
+    <strong class="text-ink font-display">Reviewed by Ryak Cleaning Ireland</strong> — ISO 9001 and ISO 14001
+    accredited commercial cleaning specialists. Family-run from Dublin with over 20 years serving businesses across
+    Ireland. Questions? Call <a href="tel:+35315314044" class="text-red hover:underline">01 531 4044</a>.
+  </p>
+</aside>

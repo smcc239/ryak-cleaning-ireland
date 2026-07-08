@@ -1,0 +1,24 @@
+---
+import FAQItem from './FAQItem.astro';
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+  title?: string;
+}
+
+const { faqs, title = 'Frequently asked questions' } = Astro.props;
+---
+
+<section class="py-16">
+  <div class="wrap">
+    <h2 class="text-[clamp(28px,3.6vw,42px)] font-extrabold mb-8">{title}</h2>
+    <div class="grid gap-3 max-w-3xl">
+      {faqs.map((faq) => <FAQItem question={faq.question} answer={faq.answer} />)}
+    </div>
+  </div>
+</section>
