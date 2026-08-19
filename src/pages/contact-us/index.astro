@@ -17,6 +17,7 @@ const contactSchema = {
 const schema = [breadcrumbSchema(breadcrumbs, SITE.url), contactSchema];
 
 const sent = Astro.url.searchParams.get('sent') === '1';
+const error = Astro.url.searchParams.get('error') === '1';
 
 const contactCards = [
   {
@@ -70,6 +71,16 @@ const nextSteps = [
           sent && (
             <div class="mb-6 p-4 rounded-lg bg-white/15 border border-white/30 text-[#FBD9D5] text-sm" role="status">
               Thank you — your enquiry has been sent. A member of our team will be in touch shortly.
+            </div>
+          )
+        }
+
+        {
+          error && (
+            <div class="mb-6 p-4 rounded-lg bg-white/15 border border-white/30 text-[#FBD9D5] text-sm" role="alert">
+              Sorry — we could not send your enquiry. Please call us on{' '}
+              <a href={SITE.phoneHref} class="underline font-semibold">{SITE.phoneDisplay}</a> or email{' '}
+              <a href={`mailto:${SITE.email}`} class="underline font-semibold">{SITE.email}</a>.
             </div>
           )
         }
