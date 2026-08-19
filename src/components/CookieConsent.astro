@@ -1,0 +1,163 @@
+---
+const gaId = import.meta.env.PUBLIC_GA4_ID;
+---
+
+<div
+  id="cookie-consent"
+  class="fixed inset-x-0 bottom-0 z-[100] hidden translate-y-full opacity-0 transition-all duration-300"
+  role="dialog"
+  aria-labelledby="cookie-consent-title"
+  aria-describedby="cookie-consent-desc"
+  aria-hidden="true"
+>
+  <div class="wrap pb-4 md:pb-6">
+    <div class="bg-ink text-white border border-[#2C2E37] rounded-card shadow-2xl p-5 md:p-6 grid md:grid-cols-[1fr_auto] gap-5 items-start">
+      <div>
+        <p id="cookie-consent-title" class="font-display font-bold text-lg mb-2">Cookie preferences</p>
+        <p id="cookie-consent-desc" class="text-sm text-[#B9BDC7] leading-relaxed max-w-2xl">
+          We use essential cookies to make this site work. With your consent, we may also use analytics cookies to understand
+          how visitors use our website and improve our services. You can change your choice at any time. Read our{' '}
+          <a href="/privacy-policy/" class="text-red hover:underline">privacy policy</a>.
+        </p>
+        <details class="mt-4 text-sm text-[#B9BDC7]">
+          <summary class="cursor-pointer font-display font-semibold text-white hover:text-red transition-colors">
+            Manage cookie settings
+          </summary>
+          <div class="mt-3 grid gap-3 pt-3 border-t border-[#2C2E37]">
+            <label class="flex items-start gap-3">
+              <input type="checkbox" checked disabled class="mt-1 accent-red" />
+              <span>
+                <strong class="text-white block">Strictly necessary</strong>
+                Required for security, form submission and basic site functionality. Always active.
+              </span>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input id="cookie-analytics" type="checkbox" class="mt-1 accent-red" />
+              <span>
+                <strong class="text-white block">Analytics</strong>
+                Helps us measure traffic and improve the website (Google Analytics, if enabled).
+              </span>
+            </label>
+          </div>
+        </details>
+      </div>
+      <div class="flex flex-wrap gap-2 md:flex-col md:min-w-[160px]">
+        <button type="button" id="cookie-accept-all" class="btn btn-red !py-2.5 !px-5 !text-sm w-full justify-center">
+          Accept all
+        </button>
+        <button type="button" id="cookie-reject" class="btn btn-ghost !py-2.5 !px-5 !text-sm w-full justify-center !border-[#2C2E37]">
+          Reject non-essential
+        </button>
+        <button type="button" id="cookie-save" class="btn btn-dark !py-2.5 !px-5 !text-sm w-full justify-center bg-[#2C2E37] hover:bg-red">
+          Save preferences
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  type="button"
+  id="cookie-settings-trigger"
+  class="hidden fixed bottom-4 left-4 z-[90] bg-white border border-line text-ink text-xs font-display font-semibold px-3 py-2 rounded-full shadow-md hover:border-red transition-colors"
+  aria-label="Open cookie settings"
+>
+  Cookie settings
+</button>
+
+<script define:vars={{ gaId }}>
+  const STORAGE_KEY = 'ryak-cookie-consent';
+  const banner = document.getElementById('cookie-consent');
+  const settingsBtn = document.getElementById('cookie-settings-trigger');
+  const analyticsCheckbox = document.getElementById('cookie-analytics');
+
+  function parseConsent(raw) {
+    if (!raw) return null;
+    try {
+      const data = JSON.parse(raw);
+      if (typeof data.analytics !== 'boolean') return null;
+      return data;
+    } catch {
+      return null;
+    }
+  }
+
+  function saveConsent(analytics) {
+    const value = {
+      necessary: true,
+      analytics,
+      timestamp: new Date().toISOString(),
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    applyConsent(value);
+    hideBanner();
+    settingsBtn?.classList.remove('hidden');
+  }
+
+  function loadAnalytics() {
+    if (!gaId) return;
+    if (document.getElementById('ga-script')) return;
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+    });
+
+    const script = document.createElement('script');
+    script.id = 'ga-script';
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    script.onload = () => {
+      gtag('js', new Date());
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('config', gaId, { anonymize_ip: true });
+    };
+    document.head.appendChild(script);
+  }
+
+  function applyConsent(consent) {
+    if (consent.analytics) {
+      loadAnalytics();
+    }
+    if (analyticsCheckbox) analyticsCheckbox.checked = consent.analytics;
+  }
+
+  function showBanner() {
+    if (!banner) return;
+    banner.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      banner.classList.remove('translate-y-full', 'opacity-0');
+      banner.setAttribute('aria-hidden', 'false');
+    });
+  }
+
+  function hideBanner() {
+    if (!banner) return;
+    banner.classList.add('translate-y-full', 'opacity-0');
+    banner.setAttribute('aria-hidden', 'true');
+    setTimeout(() => banner.classList.add('hidden'), 300);
+  }
+
+  const existing = parseConsent(localStorage.getItem(STORAGE_KEY));
+  if (existing) {
+    applyConsent(existing);
+    settingsBtn?.classList.remove('hidden');
+  } else {
+    showBanner();
+  }
+
+  document.getElementById('cookie-accept-all')?.addEventListener('click', () => saveConsent(true));
+  document.getElementById('cookie-reject')?.addEventListener('click', () => saveConsent(false));
+  document.getElementById('cookie-save')?.addEventListener('click', () => {
+    saveConsent(Boolean(analyticsCheckbox?.checked));
+  });
+  settingsBtn?.addEventListener('click', showBanner);
+</script>

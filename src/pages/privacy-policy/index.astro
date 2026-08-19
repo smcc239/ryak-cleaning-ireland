@@ -1,25 +1,86 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { SITE } from '../../consts';
 ---
 
 <BaseLayout
   title="Privacy Policy | Ryak Cleaning Ireland"
-  description="Privacy policy for Ryak Cleaning Ireland website and enquiry forms."
+  description="Privacy policy and cookie information for Ryak Cleaning Ireland website and enquiry forms."
   breadcrumbs={buildBreadcrumbs([{ label: 'Privacy Policy' }])}
   noindex
 >
   <section class="py-16">
     <div class="wrap max-w-3xl prose-content">
       <h1 class="text-4xl font-black mb-6">Privacy Policy</h1>
+      <p class="lead">Last updated: August 2026</p>
+
+      <h2>Who we are</h2>
       <p>
-        Ryak Cleaning and Support Services respects your privacy. Information submitted through our enquiry forms is used solely to respond to your request and provide quotations for our services.
+        Ryak Cleaning and Support Services ({SITE.shortName}) is the data controller for personal information submitted
+        through this website. Our registered Irish address is {SITE.address.full}. Contact:{' '}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or {SITE.phoneDisplay}.
       </p>
+
+      <h2>What data we collect</h2>
+      <p>When you submit an enquiry form, we may collect:</p>
+      <ul>
+        <li>Name and contact details (email, phone)</li>
+        <li>Company or site information you provide in your message</li>
+        <li>Service type requested</li>
+        <li>Technical data such as IP address and browser type (for security and spam prevention)</li>
+      </ul>
+
+      <h2>Lawful basis for processing</h2>
       <p>
-        We do not sell or share your personal data with third parties except where required to deliver our services or comply with legal obligations. Data is processed in accordance with applicable Irish and EU data protection legislation.
+        We process enquiry form data on the basis of <strong>consent</strong> — you must tick the GDPR consent checkbox
+        before submitting a quote request. We process strictly necessary cookies on the basis of <strong>legitimate
+        interest</strong> in operating a secure website. Analytics cookies, where used, are processed only with your
+        consent.
       </p>
+
+      <h2>How we use your data</h2>
       <p>
-        To request access to or deletion of your data, contact us at <a href="mailto:info@ryakcleaning.ie" class="text-red hover:underline">info@ryakcleaning.ie</a>.
+        Information submitted through our forms is used solely to respond to your enquiry, provide quotations and deliver
+        our cleaning services if you proceed. We do not sell your personal data. We may share data with service providers
+        who assist us (for example email delivery or spam protection) under appropriate data processing agreements.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>This website uses the following categories of cookies:</p>
+      <ul>
+        <li>
+          <strong>Strictly necessary</strong> — required for security, form functionality and remembering your cookie
+          preference. These cannot be disabled.
+        </li>
+        <li>
+          <strong>Analytics</strong> — optional cookies that help us understand website usage (for example Google
+          Analytics). These are only set if you click “Accept all” or enable analytics in cookie settings.
+        </li>
+      </ul>
+      <p>
+        You can change your cookie preferences at any time using the “Cookie settings” button at the bottom of the page.
+      </p>
+
+      <h2>Data retention</h2>
+      <p>
+        Enquiry data is retained only as long as necessary to respond to your request and manage any resulting contract,
+        or as required by law. Marketing contact is not initiated without your explicit consent.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        Under GDPR and Irish data protection law, you have the right to access, rectify, erase, restrict or object to
+        processing of your personal data, and to withdraw consent at any time. To exercise these rights, contact{' '}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. You may also lodge a complaint with the Data Protection
+        Commission (dataprotection.ie).
+      </p>
+
+      <h2>Northern Ireland</h2>
+      <p>
+        Enquiries relating to Northern Ireland may be handled by our Belfast office via{' '}
+        <a href={SITE.belfastUrl} target="_blank" rel="noopener noreferrer">ryakcleaning.com</a>, which operates under
+        the same group privacy standards.
       </p>
     </div>
   </section>

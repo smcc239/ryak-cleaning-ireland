@@ -18,9 +18,14 @@ export default {
         grey: '#5B616E',
       },
       fontFamily: {
-        sans: ['Poppins', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
-        display: ['Poppins', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
-        body: ['Poppins', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
+        /** Matches Ryak logo wordmark (Archivo Black) */
+        display: ['Archivo', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
+        /** Matches Ryak tagline / body copy in brand lockup */
+        body: ['Inter', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
+      },
+      letterSpacing: {
+        brand: '-0.03em',
       },
       maxWidth: {
         content: '1180px',

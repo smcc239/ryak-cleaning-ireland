@@ -13,9 +13,14 @@ export const onRequestPost = async (context: {
     const service = String(formData.get('service') ?? '').trim();
     const message = String(formData.get('message') ?? '').trim();
     const turnstileToken = String(formData.get('cf-turnstile-response') ?? '');
+    const gdprConsent = String(formData.get('gdprConsent') ?? '');
 
     if (!firstName || !lastName || !phone || !email || !service) {
       return new Response('Missing required fields', { status: 400 });
+    }
+
+    if (gdprConsent !== 'yes') {
+      return new Response('GDPR consent is required', { status: 400 });
     }
 
     if (env.TURNSTILE_SECRET_KEY) {

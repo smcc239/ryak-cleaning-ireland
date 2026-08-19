@@ -6,13 +6,15 @@ interface Props {
 
 const { class: className = '', variant = 'default' } = Astro.props;
 
-const isFooter = variant === 'footer';
-const src = isFooter ? '/images/ryak-logo-footer.png' : '/images/ryak-logo.webp';
-const width = isFooter ? 245 : 476;
-const height = isFooter ? 87 : 160;
-const defaultClass = isFooter
-  ? 'h-[52.5px] w-auto max-w-[220px] object-left object-contain block'
-  : 'h-[65.625px] w-auto max-w-[194px] object-left object-cover block';
+/** Official Ryak wordmark — 290×97 source asset */
+const src = '/images/ryak-logo.webp';
+const width = 290;
+const height = 97;
+
+const defaultClass =
+  variant === 'footer'
+    ? 'h-[52.5px] w-auto max-w-[220px] object-left object-contain block'
+    : 'h-[65.625px] w-auto max-w-[196px] object-left object-contain block';
 ---
 
 <img

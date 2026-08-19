@@ -62,11 +62,25 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     )
   }
 
-  <Button type="submit" variant="dark" class="w-full mt-4 justify-center !border-0">Request a Quote</Button>
+  <label class="flex items-start gap-3 mt-4 cursor-pointer">
+    <input
+      type="checkbox"
+      id="gdprConsent"
+      name="gdprConsent"
+      value="yes"
+      required
+      class="mt-1 w-4 h-4 accent-red shrink-0"
+    />
+    <span class="text-[12px] text-grey leading-relaxed">
+      I consent to Ryak Cleaning and Support Services processing my personal data to respond to this enquiry, in
+      accordance with the{' '}
+      <a href="/privacy-policy/" class="text-red underline hover:text-red-dark">privacy policy</a>. I understand I can
+      withdraw consent or request deletion of my data at any time by emailing{' '}
+      <a href={`mailto:${SITE.email}`} class="text-red underline hover:text-red-dark">{SITE.email}</a>.
+    </span>
+  </label>
 
-  <small class="block mt-3 text-[11.5px] text-grey">
-    By submitting this form you agree to our <a href="/privacy-policy/" class="underline hover:text-red">privacy policy</a> and consent to Ryak contacting you about your enquiry.
-  </small>
+  <Button type="submit" variant="dark" class="w-full mt-4 justify-center !border-0">Request a Quote</Button>
 </form>
 
 {

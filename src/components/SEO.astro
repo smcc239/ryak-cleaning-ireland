@@ -19,8 +19,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).href;
 const ogImageUrl = ogImage ?? getOgImage(Astro.url.pathname, SITE.url);
 const hreflangAlternates = getHreflangAlternates(Astro.url.pathname);
 
-const gaId = import.meta.env.PUBLIC_GA4_ID;
 const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+// GA4 loads only after cookie consent — see CookieConsent.astro
 ---
 
 <!-- Primary Meta -->
@@ -57,23 +57,11 @@ const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
 <meta name="twitter:image" content={ogImageUrl} />
 
 <!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 <!-- Schema slot -->
 <slot name="schema" />
-
-{
-  gaId && (
-    <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
-      <script is:inline define:vars={{ gaId }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', gaId);
-      </script>
-    </>
-  )
-}

@@ -15,7 +15,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display leading-tight tracking-tight;
+    @apply font-display font-bold leading-tight tracking-brand;
   }
 
   img {
@@ -47,7 +47,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center gap-2 font-display font-bold text-[15px] px-[26px] py-3.5 rounded-md transition-colors cursor-pointer border-2 border-transparent;
+    @apply inline-flex items-center gap-2 font-display font-bold text-[15px] tracking-brand px-[26px] py-3.5 rounded-md transition-colors cursor-pointer border-2 border-transparent;
   }
 
   .btn-red {
