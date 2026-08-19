@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" role="img" aria-label="Ryak">
-  <rect width="32" height="32" rx="6" fill="#14151A"/>
-  <image xlink:href="/favicon-32.png" x="0" y="0" width="32" height="32" preserveAspectRatio="xMidYMid meet"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Ryak">
+  <rect width="32" height="32" rx="5" fill="#14151A"/>
+  <text
+    x="16"
+    y="21"
+    text-anchor="middle"
+    font-family="Archivo, Arial, Helvetica, sans-serif"
+    font-weight="900"
+    font-size="10.5"
+    fill="#EE3124"
+    letter-spacing="-0.4">Ryak</text>
 </svg>
