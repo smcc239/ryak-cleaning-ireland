@@ -53,6 +53,10 @@ async function verifyTurnstile(secret: string, token: string): Promise<boolean> 
   return result.success;
 }
 
+function toBase64(value: string): string {
+  return Buffer.from(value, 'utf8').toString('base64');
+}
+
 export async function sendQuoteEmail(data: QuoteFormData, env: QuoteEnv): Promise<void> {
   const { mailgunApiKey, mailgunDomain, quoteToEmail = 'info@ryakcleaning.ie' } = env;
 
@@ -85,7 +89,7 @@ export async function sendQuoteEmail(data: QuoteFormData, env: QuoteEnv): Promis
   const response = await fetch(`https://api.eu.mailgun.net/v3/${mailgunDomain}/messages`, {
     method: 'POST',
     headers: {
-      Authorization: `Basic ${btoa(`api:${mailgunApiKey}`)}`,
+      Authorization: `Basic ${toBase64(`api:${mailgunApiKey}`)}`,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({

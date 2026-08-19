@@ -1,4 +1,4 @@
-import { processQuoteSubmission } from '../../lib/quote-handler';
+import { processQuoteSubmission } from '../../api/lib/quote-handler';
 
 export const onRequestPost = async (context: {
   request: Request;
