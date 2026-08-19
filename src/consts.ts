@@ -3,6 +3,9 @@ export const SITE = {
   shortName: 'Ryak Cleaning Ireland',
   url: 'https://www.ryakcleaning.ie',
   locale: 'en-IE',
+  foundingDate: '2003',
+  description:
+    'Accredited commercial, industrial and specialist cleaning across Ireland. ISO 9001 and ISO 14001 registered. Dublin-based, family-run since 2003.',
   phone: '+353 1 531 4044',
   phoneDisplay: '01 531 4044',
   phoneHref: 'tel:+35315314044',

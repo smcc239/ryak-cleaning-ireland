@@ -10,6 +10,7 @@ import QuoteForm from '../components/QuoteForm.astro';
 import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { SITE } from '../consts';
+import { webPageNode } from '../utils/schema';
 
 const services = (await getCollection('services'))
   .filter((s) => !s.data.parent)
@@ -31,9 +32,19 @@ const reviewSchema = {
   reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5 },
   itemReviewed: { '@id': `${SITE.url}/#organization` },
 };
+
+const homeSchema = [
+  webPageNode({
+    path: '/',
+    name: title,
+    description,
+    type: 'WebPage',
+  }),
+  reviewSchema,
+];
 ---
 
-<BaseLayout title={title} description={description} schema={[reviewSchema]}>
+<BaseLayout title={title} description={description} schema={homeSchema}>
   <Hero
     title="Specialist commercial and industrial cleaning, everywhere in Ireland."
     description="From Dublin data centres to Cork food production lines, Ryak delivers audited, accredited cleaning and support services that keep Irish businesses compliant, safe and presentable. Family run for over 20 years."

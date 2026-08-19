@@ -15,6 +15,7 @@ import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
 import { getLocationImage } from '../utils/media';
+import { faqPageSchema, locationServiceSchema, webPageNode } from '../utils/schema';
 import { SITE } from '../consts';
 
 interface Props {
@@ -44,19 +45,24 @@ const breadcrumbs = buildBreadcrumbs([
   { label: data.city },
 ]);
 
-const faqSchema =
-  data.faqs && data.faqs.length > 0
-    ? {
-        '@type': 'FAQPage',
-        mainEntity: data.faqs.map((faq) => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-        })),
-      }
-    : null;
+const pagePath = `/locations/${entry.slug}/`;
+const pageUrl = `${SITE.url}${pagePath}`;
 
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSchema] : [])];
+const locationSchema = locationServiceSchema({
+  city: data.city,
+  region: data.region,
+  description: data.description,
+  url: pageUrl,
+});
+
+const faqSchema = faqPageSchema(data.faqs);
+
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, pagePath),
+  webPageNode({ path: pagePath, name: data.title, description: data.metaDescription }),
+  locationSchema,
+  ...(faqSchema ? [faqSchema] : []),
+];
 ---
 
 <BaseLayout
@@ -65,6 +71,7 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSch
   breadcrumbs={breadcrumbs}
   breadcrumbInHero
   schema={schema}
+  ogImage={heroImage}
 >
   <PageHero
     eyebrow={isNI ? 'Northern Ireland' : 'Location'}

@@ -1,5 +1,29 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "astro"
+  "framework": "astro",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/services/deep-kitchen-cleaning", "destination": "/services/commercial-kitchen-cleaning/", "permanent": true },
+    { "source": "/services/deep-kitchen-cleaning/", "destination": "/services/commercial-kitchen-cleaning/", "permanent": true },
+    { "source": "/services/test", "destination": "/services/floor-cleaning/", "permanent": true },
+    { "source": "/services/test/", "destination": "/services/floor-cleaning/", "permanent": true },
+    { "source": "/services/transport-claning", "destination": "/sectors/transport/", "permanent": true },
+    { "source": "/services/transport-claning/", "destination": "/sectors/transport/", "permanent": true },
+    { "source": "/contact", "destination": "/contact-us/", "permanent": true },
+    { "source": "/contact/", "destination": "/contact-us/", "permanent": true },
+    { "source": "/about", "destination": "/about-us/", "permanent": true },
+    { "source": "/about/", "destination": "/about-us/", "permanent": true }
+  ]
 }

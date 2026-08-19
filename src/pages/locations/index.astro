@@ -5,6 +5,7 @@ import SectionHead from '../../components/SectionHead.astro';
 import Button from '../../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { collectionPageSchema, itemListSchema } from '../../utils/schema';
 import { getLocationImage, MEDIA } from '../../utils/media';
 import { SITE } from '../../consts';
 
@@ -13,7 +14,21 @@ const republicLocations = allLocations.filter((l) => l.data.area !== 'northern-i
 const niLocations = allLocations.filter((l) => l.data.area === 'northern-ireland');
 
 const breadcrumbs = buildBreadcrumbs([{ label: 'Locations' }]);
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, '/locations/'),
+  collectionPageSchema({
+    path: '/locations/',
+    name: 'Commercial Cleaning Locations Ireland',
+    description: 'Commercial cleaning across the Republic of Ireland and Northern Ireland.',
+  }),
+  itemListSchema({
+    name: 'Ryak Cleaning Locations',
+    items: allLocations.map((loc) => ({
+      name: loc.data.city,
+      url: `${SITE.url}/locations/${loc.slug}/`,
+    })),
+  }),
+];
 ---
 
 <BaseLayout

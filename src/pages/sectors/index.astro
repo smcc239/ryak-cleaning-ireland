@@ -5,12 +5,27 @@ import SectionHead from '../../components/SectionHead.astro';
 import SectorCard from '../../components/SectorCard.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { collectionPageSchema, itemListSchema } from '../../utils/schema';
 import { MEDIA } from '../../utils/media';
 import { SITE } from '../../consts';
 
 const sectors = (await getCollection('sectors')).sort((a, b) => a.data.order - b.data.order);
 const breadcrumbs = buildBreadcrumbs([{ label: 'Sectors' }]);
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, '/sectors/'),
+  collectionPageSchema({
+    path: '/sectors/',
+    name: 'Sector Cleaning Services Ireland',
+    description: 'Specialist cleaning for data centres, food production, healthcare and more across Ireland.',
+  }),
+  itemListSchema({
+    name: 'Ryak Cleaning Sectors',
+    items: sectors.map((s) => ({
+      name: s.data.title,
+      url: `${SITE.url}/sectors/${s.slug}/`,
+    })),
+  }),
+];
 ---
 
 <BaseLayout

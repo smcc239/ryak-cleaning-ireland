@@ -4,8 +4,10 @@ import PageHero from '../../components/PageHero.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import Button from '../../components/Button.astro';
 import { getCollection } from 'astro:content';
-import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { collectionPageSchema, itemListSchema } from '../../utils/schema';
 import { MEDIA } from '../../utils/media';
+import { SITE } from '../../consts';
 
 const posts = (await getCollection('news')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -17,12 +19,30 @@ const topicLinks = [
   { label: 'Healthcare cleaning standards', href: '/news/healthcare-cleaning-standards-ireland/' },
   { label: 'Builders clean handover', href: '/news/builders-clean-handover-guide-ireland/' },
 ];
+
+const breadcrumbs = buildBreadcrumbs([{ label: 'Resources', href: '/news/' }]);
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, '/news/'),
+  collectionPageSchema({
+    path: '/news/',
+    name: 'Ryak Cleaning Resources & Insights',
+    description: 'Commercial cleaning guides and facility management insights from Ryak Cleaning Ireland.',
+  }),
+  itemListSchema({
+    name: 'Ryak Cleaning Resources',
+    items: posts.map((post) => ({
+      name: post.data.title,
+      url: `${SITE.url}/news/${post.slug}/`,
+    })),
+  }),
+];
 ---
 
 <BaseLayout
   title="Resources & Insights | Ryak Cleaning Ireland"
   description="Commercial cleaning guides, TR19 advice, healthcare standards and facility management insights from Ryak Cleaning Ireland."
-  breadcrumbs={buildBreadcrumbs([{ label: 'Resources', href: '/news/' }])}
+  breadcrumbs={breadcrumbs}
+  schema={schema}
 >
   <PageHero
     eyebrow="Resources"

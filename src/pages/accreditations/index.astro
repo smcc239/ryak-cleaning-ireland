@@ -8,7 +8,8 @@ import FAQSection from '../../components/FAQSection.astro';
 import Button from '../../components/Button.astro';
 import AuthorCredit from '../../components/AuthorCredit.astro';
 import { ACCREDITATIONS, SITE } from '../../consts';
-import { buildBreadcrumbs } from '../../utils/breadcrumbs';
+import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { faqPageSchema, webPageNode } from '../../utils/schema';
 import { MEDIA } from '../../utils/media';
 
 const breadcrumbs = buildBreadcrumbs([{ label: 'Accreditations' }]);
@@ -78,6 +79,19 @@ const faqs = [
       'Documentation depends on the service. Contract clients receive audit reports and KPI tracking. Kitchen extract work includes TR19 certification and photographic evidence. Data centre and industrial cleans include signed method statements and access logs. We tailor reporting to your audit requirements.',
   },
 ];
+
+const accreditationFaqSchema = faqPageSchema(faqs);
+
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, '/accreditations/'),
+  webPageNode({
+    path: '/accreditations/',
+    name: 'Ryak Cleaning Ireland Accreditations',
+    description:
+      'ISO 9001, ISO 14001, SafeContractor, Constructionline Gold and BICSc trained teams for commercial and specialist cleaning.',
+  }),
+  ...(accreditationFaqSchema ? [accreditationFaqSchema] : []),
+];
 ---
 
 <BaseLayout
@@ -85,6 +99,7 @@ const faqs = [
   description="ISO 9001, ISO 14001, SafeContractor, Constructionline Gold and BICSc trained teams. Ryak Cleaning Ireland accreditations for commercial and specialist cleaning."
   breadcrumbs={breadcrumbs}
   breadcrumbInHero
+  schema={schema}
 >
   <PageHero
     eyebrow="Accreditations"

@@ -6,15 +6,11 @@ import AccreditationStrip from '../../components/AccreditationStrip.astro';
 import Button from '../../components/Button.astro';
 import { SITE, ACCREDITATIONS } from '../../consts';
 import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { contactPageSchema } from '../../utils/schema';
 
 const breadcrumbs = buildBreadcrumbs([{ label: 'Contact' }]);
 
-const contactSchema = {
-  '@type': 'ContactPage',
-  mainEntity: { '@id': `${SITE.url}/#organization` },
-};
-
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url), contactSchema];
+const schema = [breadcrumbSchema(breadcrumbs, SITE.url, '/contact-us/'), contactPageSchema('/contact-us/')];
 
 const sent = Astro.url.searchParams.get('sent') === '1';
 const error = Astro.url.searchParams.get('error') === '1';

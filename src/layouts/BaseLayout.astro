@@ -21,19 +21,40 @@ import type { BreadcrumbItem } from '../utils/breadcrumbs';
 interface Props {
   title: string;
   description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   breadcrumbInHero?: boolean;
   schema?: Record<string, unknown>[];
-  noindex?: boolean;
 }
 
-const { title, description, breadcrumbs, breadcrumbInHero = false, schema = [], noindex } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType = 'website',
+  breadcrumbs,
+  breadcrumbInHero = false,
+  schema = [],
+  noindex,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en-IE">
   <head>
-    <SEO title={title} description={description} breadcrumbs={breadcrumbs} noindex={noindex}>
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      ogType={ogType}
+      breadcrumbs={breadcrumbs}
+      noindex={noindex}
+    >
       <Schema graph={schema} slot="schema" />
     </SEO>
   </head>

@@ -11,6 +11,7 @@ import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
 import { getSectorImage } from '../utils/media';
+import { faqPageSchema, serviceSchema, webPageNode } from '../utils/schema';
 import { SITE } from '../consts';
 
 interface Props {
@@ -34,19 +35,25 @@ const breadcrumbs = buildBreadcrumbs([
   { label: data.title },
 ]);
 
-const faqSchema =
-  data.faqs.length > 0
-    ? {
-        '@type': 'FAQPage',
-        mainEntity: data.faqs.map((faq) => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-        })),
-      }
-    : null;
+const pagePath = `/sectors/${slug}/`;
+const pageUrl = `${SITE.url}${pagePath}`;
 
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url), ...(faqSchema ? [faqSchema] : [])];
+const sectorServiceSchema = serviceSchema({
+  name: `${data.title} Cleaning Services`,
+  description: data.description,
+  url: pageUrl,
+  serviceType: data.primaryKeyword,
+  image: heroImage,
+});
+
+const faqSchema = faqPageSchema(data.faqs);
+
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, pagePath),
+  webPageNode({ path: pagePath, name: data.title, description: data.metaDescription }),
+  sectorServiceSchema,
+  ...(faqSchema ? [faqSchema] : []),
+];
 ---
 
 <BaseLayout

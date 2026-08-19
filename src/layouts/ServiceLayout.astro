@@ -13,6 +13,7 @@ import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../utils/breadcrumbs';
 import { getServiceImage } from '../utils/media';
+import { faqPageSchema, serviceSchema, webPageNode } from '../utils/schema';
 import { SITE } from '../consts';
 
 interface Props {
@@ -36,28 +37,25 @@ const breadcrumbs = buildBreadcrumbs([
   { label: data.title },
 ]);
 
-const serviceSchema = {
-  '@type': 'Service',
+const pagePath = `/services/${slug}/`;
+const pageUrl = `${SITE.url}${pagePath}`;
+
+const serviceSchemaNode = serviceSchema({
   name: data.title,
   description: data.description,
-  provider: { '@id': `${SITE.url}/#organization` },
-  areaServed: { '@type': 'Country', name: 'Ireland' },
-  url: `${SITE.url}/services/${slug}/`,
-};
+  url: pageUrl,
+  serviceType: data.primaryKeyword,
+  image: heroImage,
+});
 
-const faqSchema =
-  data.faqs.length > 0
-    ? {
-        '@type': 'FAQPage',
-        mainEntity: data.faqs.map((faq) => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-        })),
-      }
-    : null;
+const faqSchema = faqPageSchema(data.faqs);
 
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url), serviceSchema, ...(faqSchema ? [faqSchema] : [])];
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, pagePath),
+  webPageNode({ path: pagePath, name: data.title, description: data.metaDescription }),
+  serviceSchemaNode,
+  ...(faqSchema ? [faqSchema] : []),
+];
 ---
 
 <BaseLayout
@@ -66,6 +64,7 @@ const schema = [breadcrumbSchema(breadcrumbs, SITE.url), serviceSchema, ...(faqS
   breadcrumbs={breadcrumbs}
   breadcrumbInHero
   schema={schema}
+  ogImage={`${SITE.url}/og-default.jpg`}
 >
   <PageHero
     eyebrow="Service"

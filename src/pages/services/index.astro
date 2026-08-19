@@ -5,6 +5,7 @@ import SectionHead from '../../components/SectionHead.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import { getCollection } from 'astro:content';
 import { buildBreadcrumbs, breadcrumbSchema } from '../../utils/breadcrumbs';
+import { collectionPageSchema, itemListSchema, webPageNode } from '../../utils/schema';
 import { MEDIA } from '../../utils/media';
 import { SITE } from '../../consts';
 
@@ -13,7 +14,21 @@ const services = (await getCollection('services'))
   .sort((a, b) => a.data.order - b.data.order);
 
 const breadcrumbs = buildBreadcrumbs([{ label: 'Services' }]);
-const schema = [breadcrumbSchema(breadcrumbs, SITE.url)];
+const schema = [
+  breadcrumbSchema(breadcrumbs, SITE.url, '/services/'),
+  collectionPageSchema({
+    path: '/services/',
+    name: 'Commercial Cleaning Services Ireland',
+    description: 'Full range of commercial cleaning services in Dublin and across Ireland.',
+  }),
+  itemListSchema({
+    name: 'Ryak Cleaning Services',
+    items: services.map((s) => ({
+      name: s.data.title,
+      url: `${SITE.url}/services/${s.slug}/`,
+    })),
+  }),
+];
 ---
 
 <BaseLayout

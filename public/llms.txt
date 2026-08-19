@@ -1,19 +1,83 @@
 # Ryak Cleaning Ireland (ryakcleaning.ie)
 
-> Commercial, industrial and specialist cleaning across the Republic of Ireland. Dublin-based, family-run since 2003. ISO 9001 & ISO 14001 accredited.
+> Accredited commercial, industrial and specialist cleaning across the Republic of Ireland. Dublin-based, family-run since 2003. ISO 9001 & ISO 14001 registered.
 
 ## Primary pages
 
 - [Home](https://www.ryakcleaning.ie/): Commercial cleaning company Ireland
 - [Services](https://www.ryakcleaning.ie/services/): Contract, industrial, kitchen, window, duct and emergency cleaning
-- [Commercial kitchen cleaning](https://www.ryakcleaning.ie/services/commercial-kitchen-cleaning/): TR19 grease extract and deep kitchen cleans
 - [Sectors](https://www.ryakcleaning.ie/sectors/): Data centres, food production, healthcare, education and more
+- [Locations](https://www.ryakcleaning.ie/locations/): Commercial cleaning across all Irish counties
+- [About](https://www.ryakcleaning.ie/about-us/): Family-run since 2003, directly employed teams
+- [Accreditations](https://www.ryakcleaning.ie/accreditations/): ISO 9001, ISO 14001, SafeContractor, Constructionline Gold
+- [Resources](https://www.ryakcleaning.ie/news/): Guides for facilities managers
 - [Contact](https://www.ryakcleaning.ie/contact-us/): Harcourt Centre, Dublin 2 · 01 531 4044 · info@ryakcleaning.ie
 
-## UK / Northern Ireland
+## Services
+
+- [Contract cleaning](https://www.ryakcleaning.ie/services/contract-cleaning/)
+- [Office cleaning](https://www.ryakcleaning.ie/services/office-cleaning/)
+- [Industrial cleaning](https://www.ryakcleaning.ie/services/industrial-cleaning/)
+- [Deep cleaning](https://www.ryakcleaning.ie/services/deep-cleaning/)
+- [Commercial kitchen cleaning](https://www.ryakcleaning.ie/services/commercial-kitchen-cleaning/): TR19 grease extract and deep kitchen cleans
+- [Ducting and ventilation cleaning](https://www.ryakcleaning.ie/services/ducting-ventilation-cleaning/)
+- [Window cleaning](https://www.ryakcleaning.ie/services/window-cleaning/)
+- [Power washing](https://www.ryakcleaning.ie/services/power-washing/)
+- [Floor cleaning](https://www.ryakcleaning.ie/services/floor-cleaning/)
+- [Builders cleans](https://www.ryakcleaning.ie/services/builders-cleans/)
+- [Road sweeping](https://www.ryakcleaning.ie/services/road-sweeping/)
+- [Emergency cleaning](https://www.ryakcleaning.ie/services/emergency-cleaning/)
+
+## Sectors
+
+- [Data centres](https://www.ryakcleaning.ie/sectors/data-centres/)
+- [Food production](https://www.ryakcleaning.ie/sectors/food-production/)
+- [Healthcare](https://www.ryakcleaning.ie/sectors/healthcare/)
+- [Education](https://www.ryakcleaning.ie/sectors/education/)
+- [Offices & professional services](https://www.ryakcleaning.ie/sectors/offices-professional-services/)
+- [Industrial](https://www.ryakcleaning.ie/sectors/industrial/)
+- [Manufacturing](https://www.ryakcleaning.ie/sectors/manufacturing/)
+- [Construction](https://www.ryakcleaning.ie/sectors/construction/)
+- [Transport](https://www.ryakcleaning.ie/sectors/transport/)
+- [Marine & shipping](https://www.ryakcleaning.ie/sectors/marine-shipping/)
+
+## Key locations (Republic of Ireland)
+
+- [Dublin](https://www.ryakcleaning.ie/locations/dublin/)
+- [Cork](https://www.ryakcleaning.ie/locations/cork/)
+- [Galway](https://www.ryakcleaning.ie/locations/galway/)
+- [Limerick](https://www.ryakcleaning.ie/locations/limerick/)
+- [Waterford](https://www.ryakcleaning.ie/locations/waterford/)
+- [Kildare](https://www.ryakcleaning.ie/locations/kildare/)
+- [Meath](https://www.ryakcleaning.ie/locations/meath/)
+- [Wicklow](https://www.ryakcleaning.ie/locations/wicklow/)
+- [Kilkenny](https://www.ryakcleaning.ie/locations/kilkenny/)
+- [Wexford](https://www.ryakcleaning.ie/locations/wexford/)
+- [Donegal](https://www.ryakcleaning.ie/locations/donegal/)
+- [Kerry](https://www.ryakcleaning.ie/locations/kerry/)
+- [Sligo](https://www.ryakcleaning.ie/locations/sligo/)
+- [Athlone](https://www.ryakcleaning.ie/locations/athlone/)
+- [Dundalk](https://www.ryakcleaning.ie/locations/dundalk/)
+
+## Northern Ireland (via Belfast office)
 
 - [Ryak Cleaning UK](https://www.ryakcleaning.com/): Belfast-based cleaning for Northern Ireland and UK
+- [Belfast](https://www.ryakcleaning.ie/locations/belfast/)
+- [Derry](https://www.ryakcleaning.ie/locations/derry/)
+- [Newry](https://www.ryakcleaning.ie/locations/newry/)
+- [Antrim](https://www.ryakcleaning.ie/locations/antrim/)
+- [Armagh](https://www.ryakcleaning.ie/locations/armagh/)
+- [Lisburn](https://www.ryakcleaning.ie/locations/lisburn/)
 
-## Locations
+## Resources & guides
 
-- [Locations hub](https://www.ryakcleaning.ie/locations/): Commercial cleaning across Dublin, Cork, Galway and all Irish counties
+- [Choosing a commercial cleaning company in Ireland](https://www.ryakcleaning.ie/news/choosing-commercial-cleaning-company-ireland/)
+- [TR19 kitchen extract guide](https://www.ryakcleaning.ie/news/tr19-kitchen-extract-guide/)
+- [Data centre cleaning in Ireland](https://www.ryakcleaning.ie/news/data-centre-cleaning-ireland/)
+- [Healthcare cleaning standards](https://www.ryakcleaning.ie/news/healthcare-cleaning-standards-ireland/)
+- [Office cleaning checklist for facility managers](https://www.ryakcleaning.ie/news/office-cleaning-checklist-facility-managers/)
+- [Builders clean handover guide](https://www.ryakcleaning.ie/news/builders-clean-handover-guide-ireland/)
+
+## Contact
+
+Phone: 01 531 4044 · Email: info@ryakcleaning.ie · Address: Harcourt Centre, Block 4, Harcourt Road, Dublin 2, D02 HW77

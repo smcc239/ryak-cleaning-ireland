@@ -93,13 +93,15 @@ export function getSectorImage(slug: string) {
 }
 
 export function getOgImage(pathname: string, siteUrl: string) {
-  if (pathname.startsWith('/services/commercial-kitchen-cleaning')) {
+  if (pathname.startsWith('/services/')) {
     return `${siteUrl}/og-default.jpg`;
   }
   if (pathname.startsWith('/locations/')) {
     const slug = pathname.replace('/locations/', '').replace(/\/$/, '');
-    const img = getLocationImage(slug);
-    return img;
+    return getLocationImage(slug);
+  }
+  if (pathname.startsWith('/news/') && pathname !== '/news/') {
+    return `${siteUrl}/og-default.jpg`;
   }
   return `${siteUrl}/og-default.jpg`;
 }
