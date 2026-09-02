@@ -10,6 +10,7 @@ import QuoteForm from '../components/QuoteForm.astro';
 import Button from '../components/Button.astro';
 import { getCollection } from 'astro:content';
 import { SITE } from '../consts';
+import { MEDIA } from '../utils/media';
 import { webPageNode } from '../utils/schema';
 
 const services = (await getCollection('services'))
@@ -117,8 +118,8 @@ const homeSchema = [
     <div class="wrap grid lg:grid-cols-2 gap-14 items-center">
       <div class="relative rounded-card overflow-hidden min-h-[380px] bg-gradient-to-br from-[#2A2C34] to-ink reveal">
         <img
-          src="https://images.pexels.com/photos/2544829/pexels-photo-2544829.jpeg?auto=compress&cs=tinysrgb&w=1200"
-          alt="Commercial kitchen ready for deep cleaning"
+          src={MEDIA.feature.kitchen}
+          alt="Industrial deep cleaning in a commercial kitchen environment"
           width={1200}
           height={800}
           loading="lazy"

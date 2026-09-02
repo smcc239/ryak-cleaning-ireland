@@ -1,67 +1,95 @@
-/** Curated images — unique ID per location (no duplicate stock across counties) */
+/** Ryak-owned photography — local assets in /public/images/ryak/ */
 
-const pexels = (id: number, w = 1800) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+const img = (file: string) => `/images/ryak/${file}`;
+
+const IMAGES = {
+  heroCommercial: img('hero-commercial.jpg'),
+  floorMopping: img('floor-mopping.jpg'),
+  cleanroomFloor: img('cleanroom-floor.jpg'),
+  windowAbseil: img('window-abseil.jpg'),
+  powerWashing: img('power-washing.jpg'),
+  industrialConfined: img('industrial-confined.jpg'),
+  industrialCrane: img('industrial-crane.jpg'),
+  emergencySpill: img('emergency-spill.jpg'),
+  emergencyFire: img('emergency-fire.jpg'),
+  educationSchool: img('education-school.jpg'),
+  wasteCleanup: img('waste-cleanup.jpg'),
+  roofMaintenance: img('roof-maintenance.jpg'),
+  suppliesMacro: img('supplies-macro.jpg'),
+  floorBelfast: img('floor-belfast.jpg'),
+  maintenanceSpray: img('maintenance-spray.jpg'),
+} as const;
 
 export const MEDIA = {
   hero: {
-    home: pexels(4483610),
-    services: pexels(6195951),
-    sectors: pexels(209230),
-    locations: pexels(325185),
-    contact: pexels(4099468),
-    about: pexels(4099237),
-    news: pexels(4099236),
+    home: IMAGES.heroCommercial,
+    services: IMAGES.heroCommercial,
+    sectors: IMAGES.industrialCrane,
+    locations: IMAGES.floorMopping,
+    contact: IMAGES.heroCommercial,
+    about: IMAGES.heroCommercial,
+    news: IMAGES.suppliesMacro,
   },
   breadcrumb: {
-    default: pexels(6195125, 1200),
-    services: pexels(6195951, 1200),
-    sectors: pexels(209230, 1200),
-    locations: pexels(325185, 1200),
-    contact: pexels(4099468, 1200),
-    about: pexels(4099237, 1200),
+    default: IMAGES.floorMopping,
+    services: IMAGES.heroCommercial,
+    sectors: IMAGES.industrialCrane,
+    locations: IMAGES.floorMopping,
+    contact: IMAGES.heroCommercial,
+    about: IMAGES.heroCommercial,
   },
   feature: {
-    kitchen: pexels(2544829, 1200),
-    industrial: pexels(265705, 1200),
-    office: pexels(1181406, 1200),
-    window: pexels(2448384, 1200),
-    healthcare: pexels(263402, 1200),
-    dataCentre: pexels(325229, 1200),
+    kitchen: IMAGES.maintenanceSpray,
+    industrial: IMAGES.industrialConfined,
+    office: IMAGES.floorMopping,
+    window: IMAGES.windowAbseil,
+    healthcare: IMAGES.cleanroomFloor,
+    dataCentre: IMAGES.cleanroomFloor,
+    emergency: IMAGES.emergencySpill,
+    duct: IMAGES.maintenanceSpray,
+    power: IMAGES.powerWashing,
+    floor: IMAGES.floorMopping,
+    road: IMAGES.wasteCleanup,
+    builders: IMAGES.roofMaintenance,
+    contract: IMAGES.heroCommercial,
   },
   locations: {
-    dublin: pexels(1796720, 1200),
-    cork: pexels(912050, 1200),
-    galway: pexels(1285625, 1200),
-    limerick: pexels(1486785, 1200),
-    waterford: pexels(127873, 1200),
-    kildare: pexels(1396122, 1200),
-    wicklow: pexels(1770310, 1200),
-    meath: pexels(1396132, 1200),
-    kilkenny: pexels(5192240, 1200),
-    wexford: pexels(3760067, 1200),
-    donegal: pexels(417074, 1200),
-    kerry: pexels(2165688, 1200),
-    sligo: pexels(1118874, 1200),
-    athlone: pexels(3184292, 1200),
-    dundalk: pexels(250692, 1200),
-    belfast: pexels(1486804, 1200),
-    derry: pexels(635705, 1200),
-    newry: pexels(1396122, 1200),
-    antrim: pexels(417074, 1200),
-    armagh: pexels(5192240, 1200),
-    lisburn: pexels(1181406, 1200),
+    dublin: IMAGES.heroCommercial,
+    cork: IMAGES.floorMopping,
+    galway: IMAGES.cleanroomFloor,
+    limerick: IMAGES.suppliesMacro,
+    waterford: IMAGES.floorMopping,
+    kildare: IMAGES.cleanroomFloor,
+    wicklow: IMAGES.suppliesMacro,
+    meath: IMAGES.floorMopping,
+    kilkenny: IMAGES.cleanroomFloor,
+    wexford: IMAGES.suppliesMacro,
+    donegal: IMAGES.floorMopping,
+    kerry: IMAGES.cleanroomFloor,
+    sligo: IMAGES.suppliesMacro,
+    athlone: IMAGES.floorMopping,
+    dundalk: IMAGES.cleanroomFloor,
+    belfast: IMAGES.floorBelfast,
+    derry: IMAGES.floorBelfast,
+    newry: IMAGES.floorBelfast,
+    antrim: IMAGES.floorBelfast,
+    armagh: IMAGES.floorBelfast,
+    lisburn: IMAGES.floorBelfast,
   },
 } as const;
 
 export type MediaSection = keyof typeof MEDIA.breadcrumb;
+
+export function isLocalImage(src: string) {
+  return src.startsWith('/images/');
+}
 
 export function getBreadcrumbImage(section: MediaSection = 'default') {
   return MEDIA.breadcrumb[section] ?? MEDIA.breadcrumb.default;
 }
 
 export function getLocationImage(slug: string) {
-  return MEDIA.locations[slug as keyof typeof MEDIA.locations] ?? MEDIA.hero.locations;
+  return MEDIA.locations[slug as keyof typeof MEDIA.locations] ?? MEDIA.feature.floor;
 }
 
 export function getServiceImage(icon: string) {
@@ -69,14 +97,14 @@ export function getServiceImage(icon: string) {
     kitchen: MEDIA.feature.kitchen,
     industrial: MEDIA.feature.industrial,
     office: MEDIA.feature.office,
-    contract: MEDIA.feature.office,
+    contract: MEDIA.feature.contract,
     window: MEDIA.feature.window,
-    emergency: MEDIA.feature.industrial,
-    duct: MEDIA.feature.kitchen,
-    power: MEDIA.feature.industrial,
-    floor: MEDIA.feature.office,
-    road: MEDIA.feature.industrial,
-    builders: MEDIA.feature.industrial,
+    emergency: MEDIA.feature.emergency,
+    duct: MEDIA.feature.duct,
+    power: MEDIA.feature.power,
+    floor: MEDIA.feature.floor,
+    road: MEDIA.feature.road,
+    builders: MEDIA.feature.builders,
   };
   return map[icon] ?? MEDIA.hero.services;
 }
@@ -85,23 +113,28 @@ export function getSectorImage(slug: string) {
   const map: Record<string, string> = {
     'data-centres': MEDIA.feature.dataCentre,
     healthcare: MEDIA.feature.healthcare,
-    'food-production': MEDIA.feature.kitchen,
+    'food-production': MEDIA.feature.industrial,
     industrial: MEDIA.feature.industrial,
     manufacturing: MEDIA.feature.industrial,
+    education: IMAGES.educationSchool,
+    construction: IMAGES.roofMaintenance,
+    transport: MEDIA.heroCommercial,
+    'marine-shipping': IMAGES.industrialCrane,
+    'offices-professional-services': MEDIA.feature.office,
   };
   return map[slug] ?? MEDIA.hero.sectors;
 }
 
 export function getOgImage(pathname: string, siteUrl: string) {
+  if (pathname.startsWith('/services/window-cleaning')) {
+    return `${siteUrl}${MEDIA.feature.window}`;
+  }
   if (pathname.startsWith('/services/')) {
-    return `${siteUrl}/og-default.jpg`;
+    return `${siteUrl}${MEDIA.hero.services}`;
   }
   if (pathname.startsWith('/locations/')) {
     const slug = pathname.replace('/locations/', '').replace(/\/$/, '');
-    return getLocationImage(slug);
-  }
-  if (pathname.startsWith('/news/') && pathname !== '/news/') {
-    return `${siteUrl}/og-default.jpg`;
+    return `${siteUrl}${getLocationImage(slug)}`;
   }
   return `${siteUrl}/og-default.jpg`;
 }

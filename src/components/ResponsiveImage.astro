@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { isLocalImage } from '../utils/media';
 
 interface Props {
   src: string;
@@ -26,7 +27,29 @@ const aspectClass =
 ---
 
 {
-  aspect === 'hero' ? (
+  isLocalImage(src) ? (
+    aspect === 'hero' ? (
+      <img
+        src={src}
+        alt={alt}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={priority ? 'high' : 'auto'}
+        class:list={[aspectClass, className]}
+        width={1800}
+        height={1200}
+      />
+    ) : (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        class:list={[aspectClass, className]}
+        width={1200}
+        height={800}
+      />
+    )
+  ) : aspect === 'hero' ? (
     <Image
       src={src}
       alt={alt}

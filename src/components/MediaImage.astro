@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
+import { isLocalImage } from '../utils/media';
+
 interface Props {
   src: string;
   alt: string;
@@ -15,17 +17,30 @@ const aspectClass = aspect === 'square' ? 'aspect-square' : aspect === 'wide' ? 
 
 <figure class:list={['rounded-card overflow-hidden border border-line bg-stone', className]}>
   <div class:list={[aspectClass, 'relative']}>
-    <Image
-      src={src}
-      alt={alt}
-      widths={[480, 768, 1024, 1200]}
-      sizes="(max-width: 768px) 100vw, 66vw"
-      format="webp"
-      loading="lazy"
-      class="absolute inset-0 w-full h-full object-cover"
-      width={1200}
-      height={800}
-    />
+    {
+      isLocalImage(src) ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          class="absolute inset-0 w-full h-full object-cover"
+          width={1200}
+          height={800}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          widths={[480, 768, 1024, 1200]}
+          sizes="(max-width: 768px) 100vw, 66vw"
+          format="webp"
+          loading="lazy"
+          class="absolute inset-0 w-full h-full object-cover"
+          width={1200}
+          height={800}
+        />
+      )
+    }
   </div>
   {caption && <figcaption class="px-4 py-3 text-xs text-grey bg-white border-t border-line">{caption}</figcaption>}
 </figure>

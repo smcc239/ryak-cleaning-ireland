@@ -1,6 +1,7 @@
 ---
 import Button from './Button.astro';
 import ResponsiveImage from './ResponsiveImage.astro';
+import { MEDIA } from '../utils/media';
 
 interface Props {
   eyebrow?: string;
@@ -19,8 +20,8 @@ const {
   description,
   primaryCta = { label: 'Request a Free Quote', href: '/contact-us/' },
   secondaryCta = { label: 'Explore Our Sectors', href: '/sectors/' },
-  imageSrc = 'https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1800',
-  imageAlt = 'Professional cleaning operative working in a commercial facility',
+  imageSrc = MEDIA.hero.home,
+  imageAlt = 'Ryak cleaning operative with branded trolley in a commercial facility',
   priority = true,
 } = Astro.props;
 

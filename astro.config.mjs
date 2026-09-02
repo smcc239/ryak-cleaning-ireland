@@ -19,7 +19,7 @@ export default defineConfig({
     }),
   ],
   image: {
-    domains: ['images.pexels.com'],
-    remotePatterns: [{ protocol: 'https', hostname: 'images.pexels.com' }],
+    domains: [],
+    remotePatterns: [],
   },
 });
