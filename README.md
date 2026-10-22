@@ -33,7 +33,7 @@ Deploy to Cloudflare Pages with:
 - Output directory: `dist`
 - Functions directory: `functions`
 
-Set environment secrets for the quote form: `TURNSTILE_SECRET_KEY`, `MAILGUN_API_KEY`, `MAILGUN_DOMAIN`, `QUOTE_TO_EMAIL`
+Set environment secrets for the quote form: `TURNSTILE_SECRET_KEY`, `MAILGUN_API_KEY`, `MAILGUN_DOMAIN`. Quote form recipients (info@ryakcleaning.ie, info@ryakcleaning.com, marketing@ryakcleaning.com) are set in `api/lib/quote-handler.ts`
 
 Set `PUBLIC_TURNSTILE_SITE_KEY` for client-side Turnstile widget.
 

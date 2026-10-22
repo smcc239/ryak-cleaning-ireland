@@ -12,9 +12,15 @@ export interface QuoteFormData {
 export interface QuoteEnv {
   mailgunApiKey?: string;
   mailgunDomain?: string;
-  quoteToEmail?: string;
   turnstileSecretKey?: string;
 }
+
+/** Every form submission is delivered to all of these addresses. */
+export const QUOTE_RECIPIENTS = [
+  'info@ryakcleaning.ie',
+  'info@ryakcleaning.com',
+  'marketing@ryakcleaning.com',
+] as const;
 
 export function parseQuoteFormData(formData: FormData): QuoteFormData {
   return {
@@ -58,7 +64,7 @@ function toBase64(value: string): string {
 }
 
 export async function sendQuoteEmail(data: QuoteFormData, env: QuoteEnv): Promise<void> {
-  const { mailgunApiKey, mailgunDomain, quoteToEmail = 'info@ryakcleaning.ie' } = env;
+  const { mailgunApiKey, mailgunDomain } = env;
 
   if (!mailgunApiKey || !mailgunDomain) {
     throw new Error('Mailgun is not configured');
@@ -94,7 +100,7 @@ export async function sendQuoteEmail(data: QuoteFormData, env: QuoteEnv): Promis
     },
     body: new URLSearchParams({
       from: `Ryak Website <noreply@${mailgunDomain}>`,
-      to: quoteToEmail,
+      to: QUOTE_RECIPIENTS.join(','),
       subject: `Quote request: ${data.service}`,
       text: textBody,
       html: htmlBody,

@@ -11,7 +11,6 @@ export const onRequestPost = async (context: {
     const result = await processQuoteSubmission(formData, {
       mailgunApiKey: env.MAILGUN_API_KEY,
       mailgunDomain: env.MAILGUN_DOMAIN,
-      quoteToEmail: env.QUOTE_TO_EMAIL,
       turnstileSecretKey: env.TURNSTILE_SECRET_KEY,
     });
 

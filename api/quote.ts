@@ -38,7 +38,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const result = await processQuoteSubmission(formData, {
       mailgunApiKey: process.env.MAILGUN_API_KEY,
       mailgunDomain: process.env.MAILGUN_DOMAIN,
-      quoteToEmail: process.env.QUOTE_TO_EMAIL,
       turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY,
     });
 
