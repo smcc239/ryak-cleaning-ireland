@@ -83,7 +83,8 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     </span>
   </label>
 
-  <Button type="submit" variant="dark" class="w-full mt-4 justify-center !border-0">Request a Quote</Button>
+  <Button type="submit" variant="dark" class="quote-submit w-full mt-4 justify-center !border-0">Request a Quote</Button>
+  <p class="text-xs text-grey text-center mt-3">We normally respond within 1 business day.</p>
 </form>
 
 {
@@ -92,6 +93,19 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   )
 }
 
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[action="/api/quote"]').forEach((form) => {
+    form.addEventListener('submit', () => {
+      const button = form.querySelector<HTMLButtonElement>('.quote-submit');
+      if (!button || button.disabled) return;
+      button.textContent = 'Sending…';
+      button.setAttribute('aria-disabled', 'true');
+      // Disable after the submit event so the form data is still sent
+      setTimeout(() => (button.disabled = true), 0);
+    });
+  });
+</script>
+
 <style>
   .form-input {
     @apply w-full border border-line rounded-md px-3 py-2.5 font-body text-sm bg-stone;
@@ -99,5 +113,19 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
   .form-input:focus {
     @apply outline-2 outline-red border-red bg-white;
+  }
+
+  .form-input:user-invalid {
+    border-color: #ee3124;
+    background-color: #fdf2f1;
+  }
+
+  .form-input:user-invalid:focus {
+    outline-color: #ee3124;
+  }
+
+  .quote-submit:disabled {
+    opacity: 0.7;
+    cursor: progress;
   }
 </style>
